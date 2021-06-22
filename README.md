@@ -1,6 +1,4 @@
-# 
-npm install -g create-react-app
-create-react-app what-on-earth
+# I was here project
 
 https://vx-demo.now.sh/docs/geo
 npm install --save @vx/geo
