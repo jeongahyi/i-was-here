@@ -1,0 +1,105 @@
+{
+    "marks": [
+    {
+        "value": 10,
+        "label": "2010",
+        "countries": {
+            "home": "South Korea",
+            "travels": ["China"],
+            "countries": ["410", "156"]
+        }
+    },
+    {
+        "value": 20,
+        "label": "2013",
+        "countries": {
+            "home": "USA",
+            "travels": ["Japan"],
+            "countries": ["410", "392", "840"]
+        },
+        "file_name": "newyork2.jpg"
+    },
+    {
+        "value": 27,
+        "countries": {
+            "home": "USA",
+            "travels": ["Japan"],
+            "countries": ["410", "392", "840"]
+        },
+        "file_name": "newyork1.jpg"
+    },
+    {
+        "value": 30,
+        "label": "2014",
+        "countries": {
+            "home": "USA",
+            "travels": ["Canada"],
+            "countries": ["840"]
+        },
+        "file_name": "newyork3.jpg"
+    },
+    {
+        "value": 32,
+        "countries": {
+            "home": "USA",
+            "travels": ["Japan"],
+            "countries": ["410", "392", "840"]
+        },
+        "file_name": "newyork4.jpg"
+    },
+    {
+        "value": 40,
+        "label": "2015",
+        "countries": {
+            "home": "South Korea",
+            "travels": ["Japan"],
+            "countries": ["840", "410"]
+        }
+    },
+    {
+        "value": 50,
+        "label": "2016",
+        "countries": {
+            "home": "Japan",
+            "travels": ["Korea", "India"],
+            "countries": ["410", "392", "356"]
+        }
+    },
+    {
+        "value": 60,
+        "label": "2017",
+        "countries": {
+            "home": "Japan",
+            "travels": ["Korea"],
+            "countries": ["392", "410"]
+        }
+    },
+    {
+        "value": 70,
+        "label": "2018",
+        "countries": {
+            "home": "Japan",
+            "travels": ["Korea", "Sweden"],
+            "countries": ["392", "410", "752"]
+        }
+    },
+    {
+        "value": 80,
+        "label": "2019",
+        "countries": {
+            "home": "Japan",
+            "travels": ["Hungary", "Austria"],
+            "countries": ["392", "410", "348", "040"]
+        }
+    },
+    {
+        "value": 90,
+        "label": "2020",
+        "countries": {
+            "home": "Japan",
+            "travels": ["Korea"],
+            "countries": ["392", "410"]
+        }
+    }
+    ]
+}

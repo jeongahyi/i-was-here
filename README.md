@@ -1,3 +1,15 @@
+# 
+npm install -g create-react-app
+create-react-app what-on-earth
+
+https://vx-demo.now.sh/docs/geo
+npm install --save @vx/geo
+
+https://github.com/topojson/topojson
+npm install topojson
+
+https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

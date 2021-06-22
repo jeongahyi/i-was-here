@@ -1,0 +1,233 @@
+{
+    "album": [
+        {
+            "id": 1,
+            "country_code": "392",
+            "country_name": "Japan",
+            "year": "2016",
+            "title": "Work days",
+            "location_name": "Tokyo",
+            "location_url": "",
+            "file_name": "tokyo1.jpg",
+            "pictures": [
+                {
+                    "tags": [],
+                    "date": "2016-10-31",
+                    "file_name": "tokyo1.jpg"
+                },
+                {
+                    "tags": [],
+                    "date": "2013-10-31",
+                    "file_name": "tokyo2.jpg"
+                },
+                {
+                    "tags": [],
+                    "date": "2016-11-31",
+                    "file_name": "tokyo3.jpg"
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "country_code": "392",
+            "country_name": "Japan",
+            "year": "2017",
+            "title": "Travel",
+            "location_name": "Yokohama",
+            "location_url": "",
+            "file_name": "tokyo4.jpg"
+        },
+        {
+            "id": 3,
+            "country_code": "840",
+            "country_name": "USA",
+            "year": "2014",
+            "title": "Night in the light",
+            "location_name": "New York",
+            "location_url": "",
+            "file_name": "newyork1.jpg"
+        },
+        {
+            "id": 4,
+            "country_code": "040",
+            "country_name": "Austria",
+            "year": "2019",
+            "title": "Lost in Wein",
+            "location_name": "Wein",
+            "location_url": "",
+            "file_name": "austria1.jpg"
+        },
+        {
+            "id": 5,
+            "country_code": "752",
+            "country_name": "Sweden",
+            "year": "2018",
+            "title": "Stockholm",
+            "location_name": "Stockholm",
+            "location_url": "",
+            "file_name": "sweden1.jpg"
+        },
+        {
+            "id": 6,
+            "country_code": "356",
+            "country_name": "India",
+            "year": "2016",
+            "title": "Almost local",
+            "location_name": "Kolkata",
+            "location_url": "",
+            "file_name": "india1.jpg"
+        }
+    ],
+    "pictures": [
+        {
+            "tags": [],
+            "date": "2016-10-31",
+            "album_id": 1,
+            "file_name": "tokyo1.jpg"
+        },
+        {
+            "tags": [],
+            "date": "2013-10-31",
+            "album_id": 1,
+            "file_name": "tokyo2.jpg"
+        },
+        {
+            "tags": [],
+            "date": "2016-11-31",
+            "album_id": 1,
+            "file_name": "tokyo3.jpg"
+        },
+        {
+            "tags": [],
+            "date": "2016-12-31",
+            "album_id": 2,
+            "file_name": "tokyo4.jpg"
+        },
+        {
+            "tags": [],
+            "date": "2016-10-01",
+            "album_id": 2,
+            "file_name": "tokyo5.jpg"
+        },
+        {
+            "tags": [],
+            "date": "2010-10-31",
+            "album_id": 3,
+            "file_name": "newyork1.jpg"
+        },
+        {
+            "tags": [],
+            "date": "2016-07-31",
+            "album_id": 3,
+            "file_name": "newyork2.jpg"
+        },
+        {
+            "tags": [],
+            "date": "2016-06-31",
+            "album_id": 3,
+            "file_name": "newyork3.jpg"
+        },
+        {
+            "tags": [],
+            "date": "2016-05-31",
+            "album_id": 3,
+            "file_name": "newyork4.jpg"
+        },
+        {
+            "tags": [],
+            "date": "2016-04-31",
+            "album_id": 3,
+            "file_name": "newyork5.jpg"
+        },
+        {
+            "tags": [],
+            "date": "2016-03-31",
+            "album_id": 4,
+            "file_name": "austria1.jpg"
+        },
+        {
+            "tags": [],
+            "date": "2016-02-31",
+            "album_id": 4,
+            "file_name": "austria2.jpg"
+        },
+        {
+            "tags": [],
+            "date": "2016-01-31",
+            "album_id": 4,
+            "file_name": "austria3.jpg"
+        },
+        {
+            "tags": [],
+            "date": "2016-01-01",
+            "album_id": 4,
+            "file_name": "austria4.jpg"
+        },
+        {
+            "tags": [],
+            "date": "2016-11-11",
+            "album_id": 4,
+            "file_name": "austria5.jpg"
+        },
+        {
+            "tags": [],
+            "date": "2011-11-11",
+            "album_id": 5,
+            "file_name": "sweden1.jpg"
+        },
+        {
+            "tags": [],
+            "date": "2011-11-11",
+            "album_id": 5,
+            "file_name": "sweden2.jpg"
+        },
+        {
+            "tags": [],
+            "date": "2011-11-11",
+            "album_id": 5,
+            "file_name": "sweden3.jpg"
+        },
+        {
+            "tags": [],
+            "date": "2011-11-11",
+            "album_id": 5,
+            "file_name": "sweden4.jpg"
+        },
+        {
+            "tags": [],
+            "date": "2011-11-11",
+            "album_id": 5,
+            "file_name": "sweden5.jpg"
+        },
+        {
+            "tags": [],
+            "date": "2011-11-11",
+            "album_id": 6,
+            "file_name": "india1.jpg"
+        },
+        {
+            "tags": [],
+            "date": "2011-11-11",
+            "album_id": 6,
+            "file_name": "india2.jpg"
+        },
+        {
+            "tags": [],
+            "date": "2011-11-11",
+            "album_id": 6,
+            "file_name": "india3.jpg"
+        },
+        {
+            "tags": [],
+            "date": "2011-11-11",
+            "album_id": 6,
+            "file_name": "india4.jpg"
+        },
+        {
+            "tags": [],
+            "date": "2011-11-11",
+            "album_id": 6,
+            "file_name": "india5.jpg"
+        }
+    ]
+}

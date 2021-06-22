@@ -1,0 +1,289 @@
+{
+    "countries": [
+        {
+            "country_code": "156",
+            "country_name": "China",
+            "year": "2010",
+            "season": "summer",
+            "purpose": "study",
+            "paragraph": "첫 해외경험. 중국의 역사와 중국어를 배우기 위해서 하문대학교에서 여름 교환학생으로 다녀왔다. ",
+            "album": []
+        },
+        {   
+            "country_code": "840",
+            "country_name": "United States of America",
+            "year": "2013",
+            "season": "",
+            "purpose": "study",
+            "paragraph": "첫 해외경험. 중국의 역사와 중국어를 배우기 위해서 하문대학교에서 여름 교환학생으로 다녀왔다. ",
+            "album": [
+                {
+                    "title": "Work Days",
+                    "location_name": "New York",
+                    "location_url": "",
+                    "pictures": [
+                        {
+                            "file_name": "newyork1.jpg",
+                            "date": "2013-10-31",
+                            "tags": []
+                        },
+                        {
+                            "file_name": "newyork2.jpg",
+                            "date": "2013-11-11",
+                            "tags": []
+                        },
+                        {
+                            "file_name": "newyork3.jpg",
+                            "date": "2014-01-11",
+                            "tags": []
+                        }
+                    ]
+                },
+                {
+                    "title": "Daily Trips",
+                    "location_name": "New York",
+                    "location_url": "",
+                    "pictures": [
+                        {
+                            "file_name": "newyork4.jpg",
+                            "date": "2013-10-31",
+                            "tags": []
+                        },
+                        {
+                            "file_name": "newyork5.jpg",
+                            "date": "2013-10-31",
+                            "tags": []
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "country_code": "356",
+            "country_name": "India",
+            "year": "2016",
+            "season": "New Year",
+            "purpose": "travel",
+            "paragraph": "첫 해외경험. 중국의 역사와 중국어를 배우기 위해서 하문대학교에서 여름 교환학생으로 다녀왔다. ",
+            "album": [
+                {
+                    "title": "Happy New Year",
+                    "location_name": "Kolkata",
+                    "location_url": "",
+                    "pictures": [
+                        {
+                            "file_name": "india1.jpg",
+                            "date": "2015-12-31",
+                            "tags": []
+                        },
+                        {
+                            "file_name": "india2.jpg",
+                            "date": "2015-01-01",
+                            "tags": []
+                        },
+                        {
+                            "file_name": "india3.jpg",
+                            "date": "2015-01-01",
+                            "tags": []
+                        },
+                        {
+                            "file_name": "india4.jpg",
+                            "date": "2015-01-01",
+                            "tags": []
+                        },
+                        {
+                            "file_name": "india5.jpg",
+                            "date": "2015-01-01",
+                            "tags": []
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "country_code": "410",
+            "country_name": "South Korea",
+            "year": "2016",
+            "season": "",
+            "purpose": "visit",
+            "paragraph": "첫 해외경험. 중국의 역사와 중국어를 배우기 위해서 하문대학교에서 여름 교환학생으로 다녀왔다. ",
+            "album": []
+        },
+        {
+            "country_code": "752",
+            "country_name": "Sweden",
+            "year": "2018",
+            "season": "autumn",
+            "purpose": "travel",
+            "paragraph": "첫 해외경험. 중국의 역사와 중국어를 배우기 위해서 하문대학교에서 여름 교환학생으로 다녀왔다. ",
+            "main_picture": "sweden1.jpg",
+            "album": [
+                {
+                    "title": "First visiting in Europe",
+                    "location_name": "Stockholm",
+                    "location_url": "",
+                    "pictures": [
+                        {
+                            "file_name": "sweden1.jpg",
+                            "date": "2018-09-10",
+                            "tags": []
+                        },
+                        {
+                            "file_name": "sweden2.jpg",
+                            "date": "2018-09-11",
+                            "tags": []
+                        },
+                        {
+                            "file_name": "sweden3.jpg",
+                            "date": "2018-09-12",
+                            "tags": []
+                        },
+                        {
+                            "file_name": "sweden4.jpg",
+                            "date": "2018-09-14",
+                            "tags": []
+                        },
+                        {
+                            "file_name": "sweden5.jpg",
+                            "date": "2018-09-14",
+                            "tags": []
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "country_code": "348",
+            "country_name": "Hungary",
+            "year": "2019",
+            "season": "autumn",
+            "purpose": "travel",
+            "paragraph": "This was my first time abroad.",
+            "main_picture": "india1.jpg",
+            "album": [
+                {
+                    "title": "Happy New Year",
+                    "location_name": "Kolkata",
+                    "location_url": "",
+                    "pictures": [
+                        {
+                            "file_name": "india1.jpg",
+                            "date": "2015-12-31",
+                            "tags": []
+                        },
+                        {
+                            "file_name": "india2.jpg",
+                            "date": "2015-01-01",
+                            "tags": []
+                        },
+                        {
+                            "file_name": "india3.jpg",
+                            "date": "2015-01-01",
+                            "tags": []
+                        },
+                        {
+                            "file_name": "india4.jpg",
+                            "date": "2015-01-01",
+                            "tags": []
+                        },
+                        {
+                            "file_name": "india5.jpg",
+                            "date": "2015-01-01",
+                            "tags": []
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "country_code": "040",
+            "country_name": "Austria",
+            "year": "2019",
+            "season": "autumn",
+            "purpose": "travel",
+            "paragraph": "첫 해외경험. 중국의 역사와 중국어를 배우기 위해서 하문대학교에서 여름 교환학생으로 다녀왔다. "
+        },
+        {
+            "country_code": "392",
+            "country_name": "Japan",
+            "year": "2021",
+            "season": "",
+            "purpose": "work",
+            "paragraph": "첫 해외경험. 중국의 역사와 중국어를 배우기 위해서 하문대학교에서 여름 교환학생으로 다녀왔다. "
+        }
+    ],
+    "marks": [
+        {
+            "value": 10,
+            "label": "2010",
+            "countries": {
+                "home": "South Korea",
+                "travels": ["China"]
+            }
+        },
+        {
+            "value": 20,
+            "label": "2013",
+            "countries": {
+                "home": "USA",
+                "travels": ["Japan"]
+            }
+        },
+        {
+            "value": 30,
+            "label": "2014",
+            "countries": {
+                "home": "USA",
+                "travels": ["Canada"]
+            }
+        },
+        {
+            "value": 40,
+            "label": "2015",
+            "countries": {
+                "home": "South Korea",
+                "travels": ["Japan"]
+            }
+        },
+        {
+            "value": 50,
+            "label": "2016",
+            "countries": {
+                "home": "Japan",
+                "travels": ["Korea", "India"]
+            }
+        },
+        {
+            "value": 60,
+            "label": "2017",
+            "countries": {
+                "home": "Japan",
+                "travels": ["Korea"]
+            }
+        },
+        {
+            "value": 70,
+            "label": "2018",
+            "countries": {
+                "home": "Japan",
+                "travels": ["Korea", "Sweden"]
+            }
+        },
+        {
+            "value": 80,
+            "label": "2019",
+            "countries": {
+                "home": "Japan",
+                "travels": ["Hungary", "Austria"]
+            }
+        },
+        {
+            "value": 90,
+            "label": "2020",
+            "countries": {
+                "home": "Japan",
+                "travels": []
+            }
+        }
+    ]
+}
