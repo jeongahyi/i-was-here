@@ -167,15 +167,15 @@ const Geo = ({ width, height, setOpen, setCountry, setInfo }) => {
           </svg>
           <div>
             <ZoomButtons zoom={zoom} />
-            <TimeTracker
-              onChange={handleSliderChange}
-              setOpen={setOpen}
-              setInfo={setInfo}  
-            />
           </div>
         </div>
       )}
       </Zoom>
+      <TimeTracker
+        onChange={handleSliderChange}
+        setOpen={setOpen}
+        setInfo={setInfo}
+      />
       {tooltipOpen && tooltipData && (<GeoTooltip top={tooltipTop} left={tooltipLeft} data={tooltipData} />)} 
     </div>
   )

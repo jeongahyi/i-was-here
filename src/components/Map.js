@@ -23,8 +23,8 @@ const useStyles = makeStyles(() => ({
 const Map = () => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
-  const [width, setWidth] = useState(window.innerWidth);
-  const [height, setHeight] = useState(window.innerHeight);
+  const [width, setWidth] = useState(window.innerWidth*0.9);
+  const [height, setHeight] = useState(window.innerWidth*0.45);
   const [country, setCountry] = useState('South Korea');
   const [info, setInfo] = useState({});
   const handleDrawerClose = () => {
@@ -32,8 +32,8 @@ const Map = () => {
   };
   useEffect(() => {
     const handleWindowResize = () => {
-      setWidth(window.innerWidth);
-      setHeight(window.innerHeight);
+      setWidth(window.innerWidth*0.9);
+      setHeight(window.innerWidth*0.45);
     }
     window.addEventListener("resize", handleWindowResize);
     return () => window.removeEventListener("resize", handleWindowResize)
