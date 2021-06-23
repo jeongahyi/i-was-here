@@ -1,4 +1,5 @@
 # I was here project
+[![Netlify Status](https://api.netlify.com/api/v1/badges/a8685b1a-6f73-4302-8966-a0e6e5789303/deploy-status)](https://app.netlify.com/sites/i-was-here/deploys)
 
 https://vx-demo.now.sh/docs/geo
 npm install --save @vx/geo
