@@ -99,6 +99,7 @@ const TimeTracker = (props) => {
         getAriaValueText={valueLabelFormat}
         alueLabelFormat={valueLabelFormat}
         valueLabelDisplay="on"
+        style={{color: 'coral'}}
       />
     </div>
   )

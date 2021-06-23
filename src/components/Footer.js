@@ -21,7 +21,7 @@ const Footer = () => {
   return (
     <footer className={classes.footer}>
       <span>
-        Built by&nbsp;
+        Designed & Built by&nbsp;
       <a href={'https://github.com/jeongahyi'}>Jeongah Y.</a>
       </span>
     </footer>

@@ -4,6 +4,7 @@ import { NaturalEarth } from '@vx/geo';
 import { scaleQuantize } from '@vx/scale';
 import { useTooltip } from '@vx/tooltip';
 import { Zoom } from '@vx/zoom'; 
+import { makeStyles } from '@material-ui/core/styles';
 
 import GeoTooltip from './GeoTooltip';
 import ZoomButtons from './ZoomButtons';
@@ -12,9 +13,18 @@ import TimeTracker from './TimeTracker';
 import { feature } from 'topojson/node_modules/topojson-client';
 import topology from '../data/countries-110m.json';
 import { countries } from '../data/travelData.json';
-import '../styles/Geo.scss';
+
+const useStyles = makeStyles(() => ({
+  container: {
+    position: 'relative'
+  },
+  grab: {
+    cursor: 'grab'
+  }
+}));
 
 const Geo = ({ width, height, setOpen, setCountry, setInfo }) => {
+  const classes = useStyles();
   // map data
   const world = feature(topology, topology.objects.countries).features;
   // map size, zoom
@@ -22,7 +32,7 @@ const Geo = ({ width, height, setOpen, setCountry, setInfo }) => {
   height = height - 100;
   const initialTransform = {
     translateX: width/2,
-    translateY: height/2 + 50,
+    translateY: height/2 + 110,
     scaleX: (width / 430) * 100,
     scaleY: (height / 430) * 100,
     scaleXMin:100,
@@ -34,7 +44,7 @@ const Geo = ({ width, height, setOpen, setCountry, setInfo }) => {
   };
 
   // map color
-  const backgroundColor = '#bfbeb4';
+  const backgroundColor = 'antiquewhite';
   const color = scaleQuantize({
     domain: [0,840],
     range: ['#4d4d4d','#666666','#808080','#999999'],
@@ -93,11 +103,11 @@ const Geo = ({ width, height, setOpen, setCountry, setInfo }) => {
     <div>
       <Zoom width={width} height={height} transformMatrix={initialTransform}>
       {zoom => (
-        <div className="container">
+        <div className={classes.container}>
           <svg 
             width={width}
             height={height}
-            className={zoom.isDragging ? 'dragging' : 'grab'}
+            className={zoom.isDragging ? 'dragging' : classes.grab}
           >
             <rect
               x={0}

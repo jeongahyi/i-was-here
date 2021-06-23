@@ -17,6 +17,7 @@ const useStyles = makeStyles(() => ({
     justifyContent: 'flex-end',
     alignItems: 'stretch',
     padding: '10px',
+    color: 'lightcoral',
   },
 }));
 
