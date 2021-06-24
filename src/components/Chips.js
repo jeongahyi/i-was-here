@@ -5,7 +5,6 @@ import Chip from '@material-ui/core/Chip';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: '1100px',
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'space-around',

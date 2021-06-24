@@ -21,6 +21,9 @@ import topology from '../data/countries-110m.json';
 import { countries } from '../data/travelData.json';
 
 const useStyles = makeStyles(() => ({
+  root: {
+    alignSelf: 'center',
+  },
   container: {
     position: 'relative'
   },
@@ -108,7 +111,7 @@ const Geo = ({ width, height, setOpen, setCountry, setInfo }) => {
   // const [click, setClick]
     
   return (
-    <div>
+    <div className={classes.root}>
       <Zoom width={width} height={height} transformMatrix={initialTransform}>
       {zoom => (
         <div className={classes.container}>

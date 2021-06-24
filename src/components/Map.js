@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
+import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 import Geo from './Geo';
 import SlideDialog from './SlideDialog';
 // import Image from './Image';
 
 const useStyles = makeStyles(() => ({
-  main: {
+  root: {
     display: 'flex',
-    alignItems: 'center',
     flexDirection: 'column',
   },
   title: {
@@ -17,7 +17,8 @@ const useStyles = makeStyles(() => ({
     flexDirection: 'row',
     justifyContent: 'flex-end',
     alignItems: 'stretch',
-    padding: '10px',
+    paddingTop: '40px',
+    paddingBottom: '20px',
     color: 'lightcoral',
   },
 }));
@@ -41,7 +42,11 @@ const Map = () => {
     return () => window.removeEventListener("resize", handleWindowResize)
   }, []);
   return (
-    <section className={classes.main}>
+    <section className={classes.root}>
+      <div>
+        <Typography variant="h5" gutterBottom>World Map</Typography>
+        <Divider />
+      </div>
       <div className={classes.title}>
         <LocationOnIcon />
         <Typography>I was in {country}</Typography>
