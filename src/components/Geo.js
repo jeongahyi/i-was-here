@@ -3,7 +3,12 @@ import * as _ from 'lodash';
 import { NaturalEarth } from '@vx/geo';
 import { scaleQuantize } from '@vx/scale';
 import { useTooltip } from '@vx/tooltip';
-import { Zoom } from '@vx/zoom'; 
+import { Zoom } from '@vx/zoom';
+import { 
+  GradientOrangeRed,
+  GradientPinkRed,
+  GradientPurpleRed,
+} from '@vx/gradient';
 import { makeStyles } from '@material-ui/core/styles';
 
 import GeoTooltip from './GeoTooltip';
@@ -45,24 +50,26 @@ const Geo = ({ width, height, setOpen, setCountry, setInfo }) => {
 
   // map color
   const backgroundColor = 'antiquewhite';
-  const color = scaleQuantize({
-    domain: [0,840],
-    range: ['#4d4d4d','#666666','#808080','#999999'],
-  });
-  const defaultColor = '#52514b';
-  const highlightColor = '#ff502f';
-  const traveledColor = '#ffc14b';
-  const mouseoverColor = '#49dadc';
+
   const countryColorChange = (feature) => {
     const id = _.get(feature, 'id');
+    const color = scaleQuantize({
+      domain: [0,840],
+      range: ['#4d4d4d','#666666','#808080','#999999'],
+    });
     let bcolor = color(parseInt(id));
+    // const defaultColor = '#52514b';
+    const highlightColor = "url('#gradientPinkRed')";
+    const traveledColor = '#FFA500';//#ffc14b';
+    // const mouseoverColor = '#49dadc';
+
     const Traveled = ['156','348','356','392','410','752','840','040'];
     // been there
     if (Traveled.find(place => place === id)) {
       bcolor = traveledColor;
       // mouseover ? 
       if (_.get(tooltipData, 'id') === id) {
-        bcolor = '#ffc88f';
+        bcolor = "url('#gradientOrangeRed')";
       }
     }
     // the year been there
@@ -70,7 +77,7 @@ const Geo = ({ width, height, setOpen, setCountry, setInfo }) => {
       bcolor = highlightColor;
       // mouseover ? 
       if (_.get(tooltipData, 'id') === id) {
-        bcolor = '#ff662f';
+        bcolor = "url('#gradientPurpleRed')";
       }
     }
 
@@ -109,6 +116,9 @@ const Geo = ({ width, height, setOpen, setCountry, setInfo }) => {
             height={height}
             className={zoom.isDragging ? 'dragging' : classes.grab}
           >
+            <GradientOrangeRed id="gradientOrangeRed" />
+            <GradientPinkRed id="gradientPinkRed" />
+            <GradientPurpleRed id="gradientPurpleRed" />
             <rect
               x={0}
               y={0}
