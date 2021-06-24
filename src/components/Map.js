@@ -4,6 +4,7 @@ import LocationOnIcon from '@material-ui/icons/LocationOn';
 import Typography from '@material-ui/core/Typography';
 import Geo from './Geo';
 import SlideDialog from './SlideDialog';
+// import Image from './Image';
 
 const useStyles = makeStyles(() => ({
   main: {
@@ -40,7 +41,7 @@ const Map = () => {
     return () => window.removeEventListener("resize", handleWindowResize)
   }, []);
   return (
-    <main className={classes.main}>
+    <section className={classes.main}>
       <div className={classes.title}>
         <LocationOnIcon />
         <Typography>I was in {country}</Typography>
@@ -57,7 +58,7 @@ const Map = () => {
         info={info}
         handleClose={handleDrawerClose}
       />
-    </main>
+    </section>
   )
 }
 
