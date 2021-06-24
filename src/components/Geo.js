@@ -11,9 +11,10 @@ import {
 } from '@vx/gradient';
 import { makeStyles } from '@material-ui/core/styles';
 
-import GeoTooltip from './GeoTooltip';
 import ZoomButtons from './ZoomButtons';
 import TimeTracker from './TimeTracker';
+import SimpleTooltip from './SimpleTooptip';
+import CardTooltip from './CardTooltip';
 
 import { feature } from 'topojson/node_modules/topojson-client';
 import topology from '../data/countries-110m.json';
@@ -55,12 +56,12 @@ const Geo = ({ width, height, setOpen, setCountry, setInfo }) => {
     const id = _.get(feature, 'id');
     const color = scaleQuantize({
       domain: [0,840],
-      range: ['#4d4d4d','#666666','#808080','#999999'],
+      range: ['#666666','#808080','#999999'],
     });
     let bcolor = color(parseInt(id));
     // const defaultColor = '#52514b';
     const highlightColor = "url('#gradientPinkRed')";
-    const traveledColor = '#FFA500';//#ffc14b';
+    const traveledColor = '#ffc14b';
     // const mouseoverColor = '#49dadc';
 
     const Traveled = ['156','348','356','392','410','752','840','040'];
@@ -174,6 +175,7 @@ const Geo = ({ width, height, setOpen, setCountry, setInfo }) => {
                         id: feature.id,
                         name: feature.properties.name,
                         info: info,
+                        IsTraveled: info.length > 0? true: false,
                       }, 
                       tooltipTop: event.clientY,
                       tooltipLeft: event.clientX
@@ -196,7 +198,21 @@ const Geo = ({ width, height, setOpen, setCountry, setInfo }) => {
         setOpen={setOpen}
         setInfo={setInfo}
       />
-      {tooltipOpen && tooltipData && (<GeoTooltip top={tooltipTop} left={tooltipLeft} data={tooltipData} />)} 
+      {tooltipOpen && tooltipData && (
+        tooltipData.IsTraveled ? (
+          <CardTooltip
+            top={tooltipTop}
+            left={tooltipLeft}
+            data={tooltipData}
+          />
+        ) : (
+          <SimpleTooltip
+            top={tooltipTop}
+            left={tooltipLeft}
+            data={tooltipData}
+          />
+        )
+      )} 
     </div>
   )
 }
