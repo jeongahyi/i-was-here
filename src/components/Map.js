@@ -23,7 +23,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const Map = () => {
+const Map = ({ setPictures }) => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [width, setWidth] = useState(window.innerWidth*0.9);
@@ -57,12 +57,13 @@ const Map = () => {
         setOpen={setOpen}
         setCountry={setCountry}
         setInfo={setInfo}
+        setPictures={setPictures}
       />
-      <SlideDialog
+      {/* <SlideDialog
         open={open}
         info={info}
         handleClose={handleDrawerClose}
-      />
+      /> */}
     </section>
   )
 }

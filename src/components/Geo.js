@@ -19,6 +19,7 @@ import CardTooltip from './CardTooltip';
 import { feature } from 'topojson/node_modules/topojson-client';
 import topology from '../data/countries-110m.json';
 import { countries } from '../data/travelData.json';
+import { Pictures } from '../data/images.json';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -32,7 +33,7 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-const Geo = ({ width, height, setOpen, setCountry, setInfo }) => {
+const Geo = ({ width, height, setOpen, setCountry, setInfo, setPictures }) => {
   const classes = useStyles();
   // map data
   const world = feature(topology, topology.objects.countries).features;
@@ -160,9 +161,11 @@ const Geo = ({ width, height, setOpen, setCountry, setInfo }) => {
                   onClick={() => {
                     setCountry(feature.properties.name);
                     const info = countries.find(country => country.country_code === feature.id);
+                    const pictures = Pictures[feature.id] || [];
                     if (info) {
                       setInfo(info);
                       setOpen(true);
+                      setPictures(pictures);
                     }      
                   }}
                   onMouseLeave={() => {

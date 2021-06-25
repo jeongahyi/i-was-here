@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Header from './components/Header';
 import Map from './components/Map';
@@ -21,12 +21,13 @@ const useStyles = makeStyles(() => ({
 
 const App = () => {
   const classes = useStyles();
+  const [pictures, setPictures] = useState({});
   return (
     <div className={classes.root}>
       <Header />
       <main className={classes.main}>
-        <Map />
-        <Images />
+        <Map setPictures={setPictures} />
+        <Images pictures={pictures} />
       </main>
       <Footer />
     </div>
