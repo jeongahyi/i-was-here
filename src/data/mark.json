@@ -20,15 +20,6 @@
         "file_name": "newyork2.jpg"
     },
     {
-        "value": 27,
-        "countries": {
-            "home": "USA",
-            "travels": ["Japan"],
-            "countries": ["410", "392", "840"]
-        },
-        "file_name": "newyork1.jpg"
-    },
-    {
         "value": 30,
         "label": "2014",
         "countries": {
@@ -37,15 +28,6 @@
             "countries": ["840"]
         },
         "file_name": "newyork3.jpg"
-    },
-    {
-        "value": 32,
-        "countries": {
-            "home": "USA",
-            "travels": ["Japan"],
-            "countries": ["410", "392", "840"]
-        },
-        "file_name": "newyork4.jpg"
     },
     {
         "value": 40,

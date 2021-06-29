@@ -5,7 +5,7 @@ import { Refresh } from '@material-ui/icons';
 const useStyles = makeStyles(() => ({
   root: {
     bottom: '10px',
-    right: '40px',
+    right: '20px',
     position: 'absolute',
     display: 'flex',
     flexDirection: 'column',

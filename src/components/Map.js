@@ -5,7 +5,7 @@ import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 import Geo from './Geo';
 import SlideDialog from './SlideDialog';
-// import Image from './Image';
+import TimeTracker from './TimeTracker';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -15,12 +15,18 @@ const useStyles = makeStyles(() => ({
   title: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'flex-end',
+    justifyContent: 'flex-start',
     alignItems: 'stretch',
-    paddingTop: '40px',
-    paddingBottom: '20px',
-    color: 'lightcoral',
+    padding: '20px',
   },
+  wrapper: {
+    display: 'flex',
+    flexDirection: 'row',
+    backgroundColor: 'pink',
+    padding: '20px',
+    borderRadius: '10px',
+    boxShadow: 'rgb(0 0 0 / 10%) 0px 8px 8px -8px',
+  }
 }));
 
 const Map = ({ setPictures }) => {
@@ -30,6 +36,14 @@ const Map = ({ setPictures }) => {
   const [height, setHeight] = useState(window.innerWidth*0.45);
   const [country, setCountry] = useState('South Korea');
   const [info, setInfo] = useState({});
+
+  const [year, setYear] = useState(2013);
+  const [places, setPlaces] = useState(['410','156']);
+  const handleSliderChange = (year ,countries) => {
+    setYear(year);
+    setPlaces(countries);
+  }
+
   const handleDrawerClose = () => {
     setOpen(false);
   };
@@ -51,14 +65,20 @@ const Map = ({ setPictures }) => {
         <LocationOnIcon />
         <Typography>I was in {country}</Typography>
       </div>
-      <Geo
-        width={width}
-        height={height}
-        setOpen={setOpen}
-        setCountry={setCountry}
-        setInfo={setInfo}
-        setPictures={setPictures}
-      />
+      <div className={classes.wrapper}>
+        <TimeTracker
+          handleSliderChange={handleSliderChange}
+        />
+        <Geo
+          width={width}
+          height={height}
+          places={places}
+          setOpen={setOpen}
+          setCountry={setCountry}
+          setInfo={setInfo}
+          setPictures={setPictures}
+        />
+      </div>
       {/* <SlideDialog
         open={open}
         info={info}
