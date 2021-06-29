@@ -10,9 +10,16 @@ import {
   GradientPurpleRed,
 } from '@vx/gradient';
 import { makeStyles } from '@material-ui/core/styles';
+import { 
+  Card,
+  CardActionArea,
+  CardContent,
+  CardMedia,
+  Typography,
+  Popover,
+} from '@material-ui/core';
 
 import ZoomButtons from './ZoomButtons';
-import TimeTracker from './TimeTracker';
 import SimpleTooltip from './SimpleTooptip';
 import CardTooltip from './CardTooltip';
 
@@ -26,14 +33,14 @@ const useStyles = makeStyles(() => ({
     alignSelf: 'center',
   },
   container: {
-    position: 'relative'
+    position: 'relative',
   },
   grab: {
     cursor: 'grab'
   }
 }));
 
-const Geo = ({ width, height, setOpen, setCountry, setInfo, setPictures }) => {
+const Geo = ({ width, height, places, setOpen, setCountry, setInfo }) => {
   const classes = useStyles();
   // map data
   const world = feature(topology, topology.objects.countries).features;
@@ -100,20 +107,59 @@ const Geo = ({ width, height, setOpen, setCountry, setInfo, setPictures }) => {
     hideTooltip,
   } = useTooltip();
 
-  // Change time tracker value
-  const [year, setYear] = useState(2013);
-  const [places, setPlaces] = useState(['410','156']);
-  const handleSliderChange = (year ,countries) => {
-    setYear(year);
-    setPlaces(countries);
-  }
 
   // timeTracker
-  // const [click, setClick]
-    
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [data, setData] = useState(null);
+  const handleClick = (event, feature) => {
+    setCountry(feature.properties.name);
+    const info = countries.find(country => country.country_code === feature.id);
+    if (info) {
+      setInfo(info);
+      setOpen(true);
+      setAnchorEl(event.currentTarget);
+    }
+  }
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  }
+
+  const handleMouseLeave = (zoom) => {
+    tooltipTimeout = window.setTimeout(() => {hideTooltip();}, 300);
+    if (zoom.isDragging) zoom.dragEnd();
+  }
+  
+  const handleMouseMove = (event, zoom, feature) => {
+    zoom.dragMove();
+    if (tooltipTimeout) clearTimeout(tooltipTimeout);
+    const info = countries.filter(country => country.country_code === feature.id);
+    if (info.length > 0) {
+      setData(info[0]);
+      setAnchorEl(event.currentTarget);
+    }
+    showTooltip({
+      tooltipData: {
+        id: feature.id,
+        name: feature.properties.name,
+        info: info,
+        IsTraveled: info.length > 0? true: false,
+      }, 
+      tooltipTop: event.pageY,
+      tooltipLeft: event.pageX,
+    });
+  }
+
+  const open = Boolean(anchorEl);
+  const id = open ? 'simple-popover' : undefined;
+
   return (
     <div className={classes.root}>
-      <Zoom width={width} height={height} transformMatrix={initialTransform}>
+      <Zoom
+        width={width}
+        height={height}
+        transformMatrix={initialTransform}
+      >
       {zoom => (
         <div className={classes.container}>
           <svg 
@@ -127,26 +173,25 @@ const Geo = ({ width, height, setOpen, setCountry, setInfo, setPictures }) => {
             <rect
               x={0}
               y={0}
+              rx={14}
               width={width}
               height={height}
               fill={backgroundColor}
-              rx={14} 
               onTouchStart={zoom.dragStart}
-              onTouchMove={(event) => {
-                zoom.dragMove();
-              }}
+              onTouchMove={(event) => {zoom.dragMove();}}
               onTouchEnd={zoom.dragEnd}
               onMouseDown={zoom.dragStart}
               onMouseMove={zoom.dragMove}
               onMouseUp={zoom.dragEnd}
-              onMouseLeave={() => {
-                if (zoom.isDragging) zoom.dragEnd();
-              }}
+              onMouseLeave={() => {if (zoom.isDragging) zoom.dragEnd();}}
             />
             <NaturalEarth
               data={world}
               scale={zoom.transformMatrix.scaleX}
-              translate={[zoom.transformMatrix.translateX, zoom.transformMatrix.translateY]}
+              translate={[
+                zoom.transformMatrix.translateX,
+                zoom.transformMatrix.translateY
+              ]}
             >
             {NaturalEarth => (
               <g>
@@ -158,35 +203,9 @@ const Geo = ({ width, height, setOpen, setCountry, setInfo, setPictures }) => {
                   stroke={'#f9f7e8'}
                   strokeWidth={0.5}
                   cursor={'pointer'}
-                  onClick={() => {
-                    setCountry(feature.properties.name);
-                    const info = countries.find(country => country.country_code === feature.id);
-                    const pictures = Pictures[feature.id] || [];
-                    if (info) {
-                      setInfo(info);
-                      setOpen(true);
-                      setPictures(pictures);
-                    }      
-                  }}
-                  onMouseLeave={() => {
-                    tooltipTimeout = window.setTimeout(() => {hideTooltip();}, 300);
-                    if (zoom.isDragging) zoom.dragEnd();
-                  }}
-                  onMouseMove={(event) => {
-                    zoom.dragMove();
-                    if (tooltipTimeout) clearTimeout(tooltipTimeout);
-                    const info = countries.filter(country => country.country_code === feature.id);
-                    showTooltip({
-                      tooltipData: {
-                        id: feature.id,
-                        name: feature.properties.name,
-                        info: info,
-                        IsTraveled: info.length > 0? true: false,
-                      }, 
-                      tooltipTop: event.clientY,
-                      tooltipLeft: event.clientX
-                    });
-                  }}
+                  onClick={(event) => (handleClick(event, feature))}
+                  onMouseLeave={() => (handleMouseLeave(zoom))}
+                  onMouseMove={(event) => (handleMouseMove(event, zoom, feature))}
                 />
               ))}
               </g>
@@ -199,26 +218,51 @@ const Geo = ({ width, height, setOpen, setCountry, setInfo, setPictures }) => {
         </div>
       )}
       </Zoom>
-      <TimeTracker
-        onChange={handleSliderChange}
-        setOpen={setOpen}
-        setInfo={setInfo}
-      />
+
+      {anchorEl && data && <Popover
+        id={id}
+        open={open}
+        anchorEl={anchorEl}
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: 'center',
+          horizontal: 'center',
+        }}
+        transformOrigin={{
+          vertical: 'center',
+          horizontal: 'center',
+        }}
+      >
+        <Card>
+          <CardActionArea>
+            <CardMedia
+              style={{height:140, width:300}}
+              image={`images/${_.get(data, "album[0].pictures[0].file_name", "tokyo4.jpg")}`}
+              title={data.country_name}
+            />
+            <CardContent>
+              <Typography
+                variant="h6"
+                component="h2"
+              >
+                {data.country_name}
+              </Typography>
+              <Typography>
+                {data.purpose} • {data.season} {data.year}
+              </Typography>
+            </CardContent>
+          </CardActionArea>
+        </Card>
+      </Popover>}
+
       {tooltipOpen && tooltipData && (
-        tooltipData.IsTraveled ? (
-          <CardTooltip
-            top={tooltipTop}
-            left={tooltipLeft}
-            data={tooltipData}
-          />
-        ) : (
           <SimpleTooltip
             top={tooltipTop}
             left={tooltipLeft}
             data={tooltipData}
           />
         )
-      )} 
+      } 
     </div>
   )
 }

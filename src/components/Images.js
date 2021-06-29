@@ -5,6 +5,7 @@ import { GridList, GridListTile } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import Chips from './Chips';
+import { Pictures } from '../data/images.json';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -42,8 +43,8 @@ const Images = ({ pictures }) => {
           cols={3}
           spacing={20}
         >
-          {pictures && pictures.length > 0 && 
-            pictures.map((tile) => (
+          {Pictures && Pictures.length > 0 && 
+            Pictures.map((tile) => (
             <GridListTile
               key={tile.url}
               cols={tile.vertical? 2 : 1}
