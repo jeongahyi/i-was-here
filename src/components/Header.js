@@ -8,19 +8,14 @@ const useStyles = makeStyles(() => ({
   header: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    padding: '20px',
-    marginBottom: '30px',
-  },
-  nav: {
-    // height: '100vw',
-    // backgroundColor: 'pink',
-    // position: 'fixed',
-    // right: 0,
+    justifyContent: 'space-around',
+    boxShadow: 'rgb(0 0 0 / 10%) 0px 8px 8px -8px',
+    transition: 'box-shadow 300ms ease-in-out 0s',
   },
   icon: {
     color: 'pink',
-    fontSize: '3em',
+    fontSize: '2.5em',
+    padding: '6px 12px',
   },
 }));
 
@@ -28,13 +23,11 @@ const Header = () => {
   const classes = useStyles();
   return (
     <header className={classes.header}>
-      <ExploreIcon className={classes.icon} />
-      <nav className={classes.nav}>
-        <Tabs>
-          <Tab label="World Map"/>
-          <Tab label="Pictures" />
-        </Tabs>
-      </nav>
+      <Tabs>
+        <Tab label="Time Travel"/>
+        <ExploreIcon className={classes.icon} />
+        <Tab label="World Travel" />
+      </Tabs>
     </header>
   )
 }
