@@ -1,21 +1,25 @@
+import React from 'react';
+import {
+  Button,
+  ButtonGroup,
+  IconButton
+} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { Button, ButtonGroup, IconButton } from '@material-ui/core';
 import { Refresh } from '@material-ui/icons';
 
 const useStyles = makeStyles(() => ({
   root: {
-    bottom: '10px',
-    right: '20px',
     position: 'absolute',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flex-end',
+    bottom: '10px',
+    right: '20px',
   }
 }));
 
-const ZoomButtons = (props) => {
+const ZoomButtons = ({ zoom }) => {
   const classes = useStyles();
-  const zoom = props.zoom;
   return (
     <div className={classes.root}>
       <ButtonGroup size="small" orientation="vertical" variant="contained">
@@ -26,11 +30,9 @@ const ZoomButtons = (props) => {
           -
         </Button>
       </ButtonGroup>
-      <div>
-        <IconButton aria-label="Refresh" onClick={zoom.reset}>
-          <Refresh fontSize="small" />
-        </IconButton>
-      </div>
+      <IconButton aria-label="Refresh" onClick={zoom.reset}>
+        <Refresh fontSize="small" />
+      </IconButton>
     </div>
   )
 }

@@ -1,7 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
+import { Tabs, Tab } from '@material-ui/core';
 import ExploreIcon from '@material-ui/icons/Explore';
 
 const useStyles = makeStyles(() => ({
@@ -13,7 +12,7 @@ const useStyles = makeStyles(() => ({
     transition: 'box-shadow 300ms ease-in-out 0s',
   },
   icon: {
-    color: 'pink',
+    color: '#ff0d85',
     fontSize: '2.5em',
     padding: '6px 12px',
   },
@@ -24,9 +23,9 @@ const Header = () => {
   return (
     <header className={classes.header}>
       <Tabs>
-        <Tab label="Time Travel"/>
+        <Tab label="Color your world"/>
         <ExploreIcon className={classes.icon} />
-        <Tab label="World Travel" />
+        <Tab label="Log your travels" />
       </Tabs>
     </header>
   )

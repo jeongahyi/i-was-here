@@ -1,15 +1,12 @@
 import React from 'react';
 import { Tooltip } from '@vx/tooltip';
 
-const SimpleTooltip = ({ top, left, data }) => {
+const ToolTip = ({ top, left, data }) => {
   return (
-    <Tooltip
-      top={top}
-      left={left}
-    >
+    <Tooltip top={top} left={left}>
       <strong>{data.name}</strong>
     </Tooltip>
   )
 }
 
-export default SimpleTooltip;
+export default ToolTip;

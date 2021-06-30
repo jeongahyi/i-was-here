@@ -1,90 +1,195 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import * as _ from 'lodash';
+import { NaturalEarth } from '@vx/geo';
+import { scaleQuantize } from '@vx/scale';
+import { useTooltip } from '@vx/tooltip';
+import { Zoom } from '@vx/zoom';
+import { GradientPinkRed } from '@vx/gradient';
 import { makeStyles } from '@material-ui/core/styles';
-import LocationOnIcon from '@material-ui/icons/LocationOn';
-import Divider from '@material-ui/core/Divider';
-import Typography from '@material-ui/core/Typography';
-import Geo from './Geo';
-import SlideDialog from './SlideDialog';
-import TimeTracker from './TimeTracker';
+import ZoomButtons from './ZoomButtons';
+import ToolTip from './ToolTip';
+import PopOver from './PopOver';
+import { feature } from 'topojson/node_modules/topojson-client';
+import topology from '../data/countries-110m.json';
+import mapInfo from '../data/mapInfo.json';
+
+// map data
+const world = feature(topology, topology.objects.countries).features;
 
 const useStyles = makeStyles(() => ({
   root: {
-    display: 'flex',
-    flexDirection: 'column',
+    alignSelf: 'center',
   },
-  title: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'stretch',
-    padding: '20px',
+  container: {
+    position: 'relative',
   },
-  wrapper: {
-    display: 'flex',
-    flexDirection: 'row',
-    backgroundColor: 'pink',
-    padding: '20px',
-    borderRadius: '10px',
-    boxShadow: 'rgb(0 0 0 / 10%) 0px 8px 8px -8px',
+  grab: {
+    cursor: 'grab',
   }
 }));
 
-const Map = ({ setPictures }) => {
+const Map = ({ width, height, countryCodes }) => {
   const classes = useStyles();
-  const [open, setOpen] = useState(false);
-  const [width, setWidth] = useState(window.innerWidth*0.9);
-  const [height, setHeight] = useState(window.innerWidth*0.45);
-  const [country, setCountry] = useState('South Korea');
-  const [info, setInfo] = useState({});
+  // map size, zoom
+  width = width - 50;
+  height = height - 100;
+  const initialTransform = {
+    translateX: width/2,
+    translateY: height/2 + 110,
+    scaleX: (width / 430) * 100,
+    scaleY: (height / 430) * 100,
+    scaleXMin:100,
+    scaleYMin:100,
+    scaleXMax:1000,
+    scaleYMax:1000,
+    skewX: 0,
+    skewY: 0
+  };
 
-  const [year, setYear] = useState(2013);
-  const [places, setPlaces] = useState(['410','156']);
-  const handleSliderChange = (year ,countries) => {
-    setYear(year);
-    setPlaces(countries);
+  // map color
+  const changeColor = (feature) => {
+    const id = _.get(feature, 'id');
+    const countryColor = scaleQuantize({
+      domain: [0,840],
+      range: ['#666666','#808080','#999999'],
+    });
+    let color = countryColor(parseInt(id));
+
+    // traveled
+    if (mapInfo[feature.id]) {
+      color = '#ffc14b';
+    }
+
+    // traveled in the year
+    if (countryCodes.find(code => code === id)) {
+      color = "url('#gradientPinkRed')";
+    }
+
+    return color;
   }
 
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
-  useEffect(() => {
-    const handleWindowResize = () => {
-      setWidth(window.innerWidth*0.9);
-      setHeight(window.innerWidth*0.45);
+  // tooltip
+  let tooltipTimeout = 0;
+  const {
+    tooltipData,
+    tooltipLeft,
+    tooltipTop,
+    tooltipOpen,
+    showTooltip,
+    hideTooltip,
+  } = useTooltip();
+
+  // popover
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [data, setData] = useState(null);
+  const open = Boolean(anchorEl);
+  const id = open ? 'simple-popover' : undefined;
+
+  const handleClick = (event, feature) => {
+    if (mapInfo[feature.id]) {
+      setAnchorEl(event.currentTarget);
     }
-    window.addEventListener("resize", handleWindowResize);
-    return () => window.removeEventListener("resize", handleWindowResize)
-  }, []);
+  }
+
+  const handleMouseLeave = (zoom) => {
+    tooltipTimeout = window.setTimeout(() => {hideTooltip();}, 300);
+    if (zoom.isDragging) zoom.dragEnd();
+  }
+  
+  const handleMouseMove = (event, zoom, feature) => {
+    zoom.dragMove();
+    if (tooltipTimeout) clearTimeout(tooltipTimeout);
+
+    if (mapInfo[feature.id]) {
+      setData(mapInfo[feature.id]);
+      setAnchorEl(event.currentTarget);
+    } else {
+      showTooltip({
+        tooltipData: { name: feature.properties.name }, 
+        tooltipTop: event.pageY,
+        tooltipLeft: event.pageX,
+      });
+    }
+  }
+
   return (
-    <section className={classes.root}>
-      <div>
-        <Typography variant="h5" gutterBottom>World Map</Typography>
-        <Divider />
-      </div>
-      <div className={classes.title}>
-        <LocationOnIcon />
-        <Typography>I was in {country}</Typography>
-      </div>
-      <div className={classes.wrapper}>
-        <TimeTracker
-          handleSliderChange={handleSliderChange}
-        />
-        <Geo
-          width={width}
-          height={height}
-          places={places}
-          setOpen={setOpen}
-          setCountry={setCountry}
-          setInfo={setInfo}
-          setPictures={setPictures}
-        />
-      </div>
-      {/* <SlideDialog
-        open={open}
-        info={info}
-        handleClose={handleDrawerClose}
-      /> */}
-    </section>
+    <div className={classes.root}>
+      <Zoom
+        width={width}
+        height={height}
+        transformMatrix={initialTransform}
+      >
+      {zoom => (
+        <div className={classes.container}>
+          <svg 
+            width={width}
+            height={height}
+            className={zoom.isDragging ? 'dragging' : classes.grab}
+          >
+            <GradientPinkRed id="gradientPinkRed" />
+            <rect
+              x={0}
+              y={0}
+              rx={14}
+              width={width}
+              height={height}
+              fill={'antiquewhite'}
+              onTouchStart={zoom.dragStart}
+              onTouchMove={(event) => {zoom.dragMove();}}
+              onTouchEnd={zoom.dragEnd}
+              onMouseDown={zoom.dragStart}
+              onMouseMove={zoom.dragMove}
+              onMouseUp={zoom.dragEnd}
+              onMouseLeave={() => {if (zoom.isDragging) zoom.dragEnd();}}
+            />
+            <NaturalEarth
+              data={world}
+              scale={zoom.transformMatrix.scaleX}
+              translate={[
+                zoom.transformMatrix.translateX,
+                zoom.transformMatrix.translateY
+              ]}
+            >
+            {NaturalEarth => (
+              <g>
+              {NaturalEarth.features.map(({ feature, path }, i) => (
+                <path 
+                  key={`map-feature-${i}`}
+                  d={path || ''}
+                  fill={changeColor(feature)}
+                  stroke={'#f9f7e8'}
+                  strokeWidth={0.5}
+                  cursor={'pointer'}
+                  onClick={(event) => (handleClick(event, feature))}
+                  onMouseLeave={() => (handleMouseLeave(zoom))}
+                  onMouseMove={(event) => (handleMouseMove(event, zoom, feature))}
+                />
+              ))}
+              </g>
+            )}
+            </NaturalEarth>
+          </svg>
+          <ZoomButtons zoom={zoom} />
+        </div>
+      )}
+      </Zoom>
+      {anchorEl && data && (
+        <PopOver
+          data={data}
+          id={id}
+          open={open}
+          anchorEl={anchorEl}
+          setAnchorEl={setAnchorEl}
+        />)
+      }
+      {tooltipOpen && tooltipData && (
+        <ToolTip
+          top={tooltipTop}
+          left={tooltipLeft}
+          data={tooltipData}
+        />)
+      } 
+    </div>
   )
 }
 

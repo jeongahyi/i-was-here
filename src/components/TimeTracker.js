@@ -10,7 +10,7 @@ const useStyles = makeStyles(() => ({
     paddingLeft: '10px',
   },
   slider: {
-    color: 'lightcoral',
+    color: '#242426',
   }
 }));
 
@@ -18,56 +18,67 @@ const marks = [
   {
     value: 1,
     label: "2010",
-    countries: ["410", "156"]
+    countryCodes: ["410", "156"],
+    country: "China"
   },
   {
     value: 2,
     label: "2013",
-    countries: ["410", "392", "840"]
+    countryCodes: ["410", "392", "840"],
+    country: "United States of America"
   },
   {
     value: 3,
     label: "2014",
-    countries: ["840"]
+    countryCodes: ["840"],
+    country: "United States of America"
   },
   {
     value: 4,
     label: "2015",
-    countries: ["840", "410"]
+    countryCodes: ["840", "410"],
+    country: "South Korea"
   },
   {
     value: 5,
     label: "2016",
-    countries: ["410", "392", "356"]
+    countryCodes: ["410", "392", "356"],
+    country: "Japan"
   },
   {
     value: 6,
     label: "2017",
-    countries: ["392", "410"]
+    countryCodes: ["392", "410"],
+    country: "Japan"
   },
   {
     value: 7,
     label: "2018",
-    countries: ["392", "410", "752"]
+    countryCodes: ["392", "410", "752"],
+    country: "Sweden"
   },
   {
     value: 8,
     label: "2019",
-    countries: ["392", "410", "348", "040"]
+    countryCodes: ["392", "410", "348", "040"],
+    country: "Hungary"
   },
   {
     value: 9,
     label: "2020",
-    countries: ["392", "410"]
+    countryCodes: ["392", "410"],
+    country: "Japan"
   }
 ];
 
-const TimeTracker = ({ handleSliderChange }) => {
+const TimeTracker = ({ setYear, setCountryCodes, setCountry }) => {
   const classes = useStyles();
   const onChange = (event, value) => {
     const mark = marks.find(mark => mark.value === value);
     if (!mark) { return; }
-    handleSliderChange(mark.label, mark.countries);
+    setYear(mark.label);
+    setCountryCodes(mark.countryCodes);
+    setCountry(mark.country);
   }
 
   return (
@@ -77,7 +88,7 @@ const TimeTracker = ({ handleSliderChange }) => {
         orientation="vertical"
         min={0}
         max={10}
-        defaultValue={1}
+        defaultValue={2}
         track={false}
         step={null}
         marks={marks}
