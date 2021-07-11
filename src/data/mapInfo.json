@@ -68,23 +68,23 @@
     "images": [
       {
         "label": "Kolkata",
-        "imgPath": "images/india1.jpg"
+        "imgPath": "https://ik.imagekit.io/rmp4rjs7fhf7/Travel/India/street_4tSCgV1uZ.jpeg"
       },
       {
         "label": "Kolkata",
-        "imgPath": "images/india2.jpg"
+        "imgPath": "https://ik.imagekit.io/rmp4rjs7fhf7/Travel/India/river_nZUkN5oQKE.jpeg"
       },
       {
         "label": "Kolkata",
-        "imgPath": "images/india3.jpg"
+        "imgPath": "https://ik.imagekit.io/rmp4rjs7fhf7/Travel/India/train_vLC9eJpISL.jpeg"
       },
       {
         "label": "Kolkata",
-        "imgPath": "images/india4.jpg"
+        "imgPath": "https://ik.imagekit.io/rmp4rjs7fhf7/Travel/India/flyer_9MAehm0g6S.jpeg"
       },
       {
         "label": "Kolkata",
-        "imgPath": "images/india5.jpg"
+        "imgPath": "https://ik.imagekit.io/rmp4rjs7fhf7/Travel/India/wall_iX_tnTzU6J.jpeg"
       }
     ]
   },
@@ -102,22 +102,22 @@
     "purpose": "travel",
     "images": [
       {
-        "label": "First visiting in Europe",
-        "imgPath": "images/sweden1.jpg"
-      },
-      {
         "label": "Stockholm",
-        "imgPath": "images/sweden2.jpg"
+        "imgPath": "https://ik.imagekit.io/rmp4rjs7fhf7/Travel/Sweden/subwaystation_gZMaIBWhHj.jpeg"
       },
       {
         "label": "First visiting in Europe",
-        "imgPath": "images/sweden3.jpg"
+        "imgPath": "https://ik.imagekit.io/rmp4rjs7fhf7/Travel/Sweden/supermarket_WXdM9ri4EU.jpeg"
+      },
+      {
+        "label": "First visiting in Europe",
+        "imgPath": "https://ik.imagekit.io/rmp4rjs7fhf7/Travel/Sweden/bookstore_k8QuqRjCOF.jpeg"
       },      {
         "label": "First visiting in Europe",
-        "imgPath": "images/sweden4.jpg"
+        "imgPath": "https://ik.imagekit.io/rmp4rjs7fhf7/Travel/Sweden/animal_2-mt2NL593.jpeg"
       },      {
         "label": "First visiting in Europe",
-        "imgPath": "images/sweden5.jpg"
+        "imgPath": "https://ik.imagekit.io/rmp4rjs7fhf7/Travel/Sweden/graffiti_T_KPWMDfia.jpeg"
       }
     ]
   },
