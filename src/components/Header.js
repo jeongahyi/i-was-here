@@ -12,9 +12,9 @@ const useStyles = makeStyles(() => ({
     transition: 'box-shadow 300ms ease-in-out 0s',
   },
   icon: {
+    padding: '6px 12px',
     color: '#ff0d85',
     fontSize: '2.5em',
-    padding: '6px 12px',
   },
 }));
 
@@ -25,7 +25,7 @@ const Header = () => {
       <Tabs>
         <Tab label="Color your world"/>
         <ExploreIcon className={classes.icon} />
-        <Tab label="Log your travels" />
+        <Tab label="Log your journeys" />
       </Tabs>
     </header>
   )

@@ -3,14 +3,13 @@ import { makeStyles } from '@material-ui/core/styles';
 import Header from './components/Header';
 import Main from './components/Main';
 import Footer from './components/Footer';
+import './styles/global.scss';
 
 const useStyles = makeStyles(() => ({
   root: {
-    display: 'flex',
-    flexDirection: 'column',
+    height: "100%",
     margin: '0',
     minHeight: '100vh',
-    backgroundColor: 'whitesmoke',
   }
 }));
 
@@ -20,7 +19,7 @@ const App = () => {
     <div className={classes.root}>
       <Header />
       <Main />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

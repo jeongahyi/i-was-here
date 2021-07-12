@@ -31,8 +31,7 @@ const useStyles = makeStyles(() => ({
 const Map = ({ width, height, countryCodes }) => {
   const classes = useStyles();
   // map size, zoom
-  width = width - 50;
-  height = height - 100;
+  height = height - 170;
   const initialTransform = {
     translateX: width/2,
     translateY: height/2 + 110,
@@ -130,7 +129,6 @@ const Map = ({ width, height, countryCodes }) => {
             <rect
               x={0}
               y={0}
-              rx={14}
               width={width}
               height={height}
               fill={'antiquewhite'}

@@ -1,31 +1,55 @@
-import React from 'react';
-import { Typography, Divider } from '@material-ui/core';
+import React, { useState } from 'react';
+import { TextField, Divider } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import MapWrapper from './MapWrapper';
+import TimeTracker from './TimeTracker';
 
 const useStyles = makeStyles(() => ({
   root: {
-    alignSelf: 'center',
-    marginTop: '30px',
-    marginBottom: '100px',
+    bottom: '0',
   },
-  title: {
+  search: {
     display: 'flex',
-    flexDirection: 'column',
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingLeft: '20px',
+  },
+  keyword: {
+    margin: '10px',
+    backgroundColor: 'white'
   }
 }));
 
 const Main = () => {
   const classes = useStyles();
+
+  const [countryCodes, setCountryCodes] = useState(['410','392','840']);
+  const [country, setCountry] = useState('United States of America');
+  const [year, setYear] = useState(2013);
+
   return (
     <main className={classes.root}>
-      <div className={classes.title}>
-        <Typography variant="h5" gutterBottom>
-          I was here
-        </Typography>
-        <Divider />
+      <div className={classes.search}>
+        <TextField
+          id="search-keyword"
+          label="Search"
+          variant="outlined"
+          size="small"
+          placeholder="country, city, year..."
+          className={classes.keyword}
+        />
+        <TimeTracker
+          setYear={setYear}
+          setCountryCodes={setCountryCodes}
+          setCountry={setCountry}
+        />
       </div>
-      <MapWrapper />
+      <Divider />
+      <MapWrapper
+        countryCodes={countryCodes}
+        country={country}
+        year={year}
+      />
     </main>
   )
 }

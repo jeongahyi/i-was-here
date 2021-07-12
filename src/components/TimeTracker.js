@@ -1,15 +1,13 @@
 import React from 'react';
-import { Slider } from '@material-ui/core';
+import { Typography, Slider } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(() => ({
   wrapper: {
     display: 'flex',
-    marginBottom: '20px',
-    padding: '35px',
-    paddingLeft: '10px',
   },
   slider: {
+    width: '500px',
     color: '#242426',
   }
 }));
@@ -83,9 +81,11 @@ const TimeTracker = ({ setYear, setCountryCodes, setCountry }) => {
 
   return (
     <div className={classes.wrapper}>
+      <Typography id="time-tracker" gutterBottom>
+        Year
+      </Typography>
       <Slider
         className={classes.slider}
-        orientation="vertical"
         min={0}
         max={10}
         defaultValue={2}
@@ -93,7 +93,7 @@ const TimeTracker = ({ setYear, setCountryCodes, setCountry }) => {
         step={null}
         marks={marks}
         onChange={onChange}
-        aria-labelledby="vertical-slider"
+        aria-labelledby="time-tracker"
       />
     </div>
   )

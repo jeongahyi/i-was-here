@@ -3,7 +3,6 @@ import { Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import Map from './Map';
-import TimeTracker from './TimeTracker';
 
 const useStyles = makeStyles(() => ({
   title: {
@@ -23,19 +22,15 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-const MapWrapper = () => {
+const MapWrapper = ({ countryCodes, country, year }) => {
   const classes = useStyles();
-  const [width, setWidth] = useState(window.innerWidth*0.9);
-  const [height, setHeight] = useState(window.innerWidth*0.45);
-
-  const [countryCodes, setCountryCodes] = useState(['410','392','840']);
-  const [country, setCountry] = useState('United States of America');
-  const [year, setYear] = useState(2013);
+  const [width, setWidth] = useState(window.innerWidth);
+  const [height, setHeight] = useState(window.innerHeight);
 
   useEffect(() => {
     const handleWindowResize = () => {
-      setWidth(window.innerWidth*0.9);
-      setHeight(window.innerWidth*0.45);
+      setWidth(window.innerWidth);
+      setHeight(window.innerHeight);
     }
     window.addEventListener("resize", handleWindowResize);
     return () => window.removeEventListener("resize", handleWindowResize)
@@ -47,18 +42,11 @@ const MapWrapper = () => {
         <LocationOnIcon />
         <Typography>I was in {country}, {year}</Typography>
       </div>
-      <div className={classes.wrapper}>
-        <TimeTracker
-          setYear={setYear}
-          setCountryCodes={setCountryCodes}
-          setCountry={setCountry}
-        />
-        <Map
-          width={width}
-          height={height}
-          countryCodes={countryCodes}
-        />
-      </div>
+      <Map
+        width={width}
+        height={height}
+        countryCodes={countryCodes}
+      />
     </>
   )
 }
