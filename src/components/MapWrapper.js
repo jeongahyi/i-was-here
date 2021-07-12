@@ -11,6 +11,7 @@ const useStyles = makeStyles(() => ({
     justifyContent: 'flex-end',
     alignItems: 'stretch',
     padding: '20px',
+    backgroundColor: 'white',
   },
   wrapper: {
     display: 'flex',
