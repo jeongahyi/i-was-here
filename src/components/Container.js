@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import MapWrapper from './MapWrapper';
 import Search from './Search';
+import mapInfo from '../data/mapInfo.json';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -9,7 +10,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const Main = () => {
+const Container = () => {
   const classes = useStyles();
 
   // Search states
@@ -20,17 +21,18 @@ const Main = () => {
   return (
     <main className={classes.root}>
       <Search
+        country={country}
+        year={year}
         setYear={setYear}
         setCountryCodes={setCountryCodes}
         setCountry={setCountry}
       />
       <MapWrapper
+        mapInfo={mapInfo}
         countryCodes={countryCodes}
-        country={country}
-        year={year}
       />
     </main>
   )
 }
 
-export default Main;
+export default Container;

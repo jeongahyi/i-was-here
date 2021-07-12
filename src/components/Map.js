@@ -11,7 +11,6 @@ import ToolTip from './ToolTip';
 import PopOver from './PopOver';
 import { feature } from 'topojson/node_modules/topojson-client';
 import topology from '../data/countries-110m.json';
-import mapInfo from '../data/mapInfo.json';
 
 // map data
 const world = feature(topology, topology.objects.countries).features;
@@ -28,10 +27,10 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-const Map = ({ width, height, countryCodes }) => {
+const Map = ({ mapInfo, width, height, countryCodes }) => {
   const classes = useStyles();
   // map size, zoom
-  height = height - 170;
+  height = height - 120;
   const initialTransform = {
     translateX: width/2,
     translateY: height/2 + 110,
@@ -86,6 +85,7 @@ const Map = ({ width, height, countryCodes }) => {
 
   const handleClick = (event, feature) => {
     if (mapInfo[feature.id]) {
+      setData(mapInfo[feature.id]);
       setAnchorEl(event.currentTarget);
     }
   }
@@ -99,16 +99,11 @@ const Map = ({ width, height, countryCodes }) => {
     zoom.dragMove();
     if (tooltipTimeout) clearTimeout(tooltipTimeout);
 
-    if (mapInfo[feature.id]) {
-      setData(mapInfo[feature.id]);
-      setAnchorEl(event.currentTarget);
-    } else {
-      showTooltip({
-        tooltipData: { name: feature.properties.name }, 
-        tooltipTop: event.pageY,
-        tooltipLeft: event.pageX,
-      });
-    }
+    showTooltip({
+      tooltipData: { name: feature.properties.name },
+      tooltipTop: event.pageY,
+      tooltipLeft: event.pageX,
+    });
   }
 
   return (

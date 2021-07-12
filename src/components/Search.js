@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { TextField, Select, MenuItem, InputLabel, FormControl } from '@material-ui/core';
+import LocationOnIcon from '@material-ui/icons/LocationOn';
+import { TextField, Select, MenuItem, InputLabel, FormControl, Typography } from '@material-ui/core';
 import TimeTracker from './TimeTracker';
 
 const useStyles = makeStyles((theme) => ({
@@ -22,9 +23,17 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
     minWidth: 120,
   },
+  title: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignItems: 'stretch',
+    padding: '20px',
+    backgroundColor: 'white',
+  },
 }));
 
-const Search = ({ setCountryCodes, setCountry, setYear }) => {
+const Search = ({ setCountryCodes, setCountry, setYear, country, year }) => {
   const classes = useStyles();
   return (
     <div className={classes.search}>
@@ -56,6 +65,10 @@ const Search = ({ setCountryCodes, setCountry, setYear }) => {
         setCountryCodes={setCountryCodes}
         setCountry={setCountry}
       />
+      <div className={classes.title}>
+        <LocationOnIcon />
+        <Typography>I was in {country}, {year}</Typography>
+      </div>
     </div>
   )
 }

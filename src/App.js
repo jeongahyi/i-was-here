@@ -1,8 +1,8 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Header from './components/Header';
-import Main from './components/Main';
-import Footer from './components/Footer';
+import Container from './components/Container';
+// import Footer from './components/Footer';
 import './styles/global.scss';
 
 const useStyles = makeStyles(() => ({
@@ -18,7 +18,7 @@ const App = () => {
   return (
     <div className={classes.root}>
       <Header />
-      <Main />
+      <Container />
       {/* <Footer /> */}
     </div>
   );
