@@ -3,15 +3,16 @@ import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { 
   AppBar,
-  Toolbar,
   IconButton,
   Drawer,
+  Tooltip,
+  Divider,
 } from '@material-ui/core';
-import { Menu } from '@material-ui/icons';
+import { Menu, FilterList } from '@material-ui/icons';
 import Map from './Map';
 import CardItem from './CardItem';
 
-const drawerWidth = 350;
+const drawerWidth = 650;
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,9 +26,9 @@ const useStyles = makeStyles((theme) => ({
     top: 'auto',
     width: '100px',
     left: '0',
+    marginTop: '10px'
   },
   appBarShift: {
-    // width: `calc(100% - ${drawerWidth}px)`,
     marginLeft: drawerWidth,
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.easeOut,
@@ -36,9 +37,10 @@ const useStyles = makeStyles((theme) => ({
     top: 'auto',
     width: '100px',
     left: '0',
+    marginTop: '10px'
   },
   menuButton: {
-    marginRight: theme.spacing(2),
+    marginLeft: theme.spacing(0),
   },
   hide: {
     display: 'none',
@@ -54,7 +56,6 @@ const useStyles = makeStyles((theme) => ({
     top: 'auto',
     overflowY: 'auto',
     padding: '10px'
-    // display: 'contents',
   },
   drawerHeader: {
     display: 'flex',
@@ -65,13 +66,10 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'flex-end',
   },
   content: {
-    // flexGrow: 1,
-    // padding: theme.spacing(3),
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    // marginLeft: -drawerWidth,
   },
   contentShift: {
     transition: theme.transitions.create('margin', {
@@ -80,6 +78,9 @@ const useStyles = makeStyles((theme) => ({
     }),
     marginLeft: 0,
   },
+  filter: {
+    marginBottom: '10px',
+  }
 }));
 
 const MapWrapper = ({ mapInfo, countryCodes }) => {
@@ -110,18 +111,15 @@ const MapWrapper = ({ mapInfo, countryCodes }) => {
           [classes.appBarShift]: open,
         })}
       >
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="drawer"
-            onClick={handleDrawer}
-            edge="start"
-            className={clsx(classes.menuButton)}
-          >
-            <Menu />
-            list
-          </IconButton>
-        </Toolbar>
+        <IconButton
+          color="inherit"
+          aria-label="drawer"
+          onClick={handleDrawer}
+          edge="start"
+          className={clsx(classes.menuButton)}
+        >
+          <span><Menu />list</span>
+        </IconButton>
       </AppBar>
       <Drawer
         className={classes.drawer}
@@ -132,11 +130,18 @@ const MapWrapper = ({ mapInfo, countryCodes }) => {
           paper: classes.drawerPaper,
         }}
       >
-        {/* <Divider /> */}
+        <div className={classes.filter}>
+          <Tooltip title="Filter list">
+            <IconButton aria-label="filter list">
+              <FilterList />
+            </IconButton>
+          </Tooltip>
+          <Divider />
+        </div>
         {Object.keys(mapInfo).map((countryId) => {
           const countryInfo = mapInfo[countryId];
           console.info(countryId, countryInfo);
-          return <CardItem key={countryId} data={countryInfo} />
+          return <CardItem key={countryId} data={countryInfo} width={drawerWidth} />
         })}
       </Drawer>
       <div

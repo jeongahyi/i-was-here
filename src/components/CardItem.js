@@ -27,12 +27,12 @@ const useStyles = makeStyles(() => ({
     marginBottom: '10px',
   },
   cardMedia: {
-    height: 180,
-    width: 350,
+    height: 320,
+    width: 450,
   }
 }));
 
-const CardItem = ({ data }) => {
+const CardItem = ({ data, width }) => {
   const classes = useStyles();
   const theme = useTheme();
 
@@ -54,6 +54,7 @@ const CardItem = ({ data }) => {
           className={classes.cardMedia}
           image={images[activeStep].imgPath}
           title={data.country_name}
+          style={{width: width}}
         />
         <MobileStepper
           steps={maxSteps}
