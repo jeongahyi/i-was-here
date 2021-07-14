@@ -2,7 +2,7 @@
   "392": {
     "country": "Japan",
     "keyword": ["work"],
-    "year": ["2016", "2017", "2018", "2019", "2020", "2021"],
+    "year": [2016, 2017, 2018, 2019, 2020, 2021],
     "images": [
       {
         "label": "Work Work Work",
@@ -27,7 +27,7 @@
   "410": {
     "country": "South Korea",
     "keyword": ["gathering", "spring"],
-    "year": ["2016", "2017", "2018", "2019", "2020"],
+    "year": [2016, 2017, 2018, 2019, 2020],
     "images": [
       {
         "label": "Seoul",
@@ -59,7 +59,7 @@
   "348": {
     "country": "Hungary",
     "keyword": ["travel", "autumn"],
-    "year": ["2019"],
+    "year": [2019],
     "images": [
       {
         "label": "First visiting in Europe",
@@ -86,7 +86,7 @@
   "040": {
     "country": "Austria",
     "keyword": ["travel", "one day trip", "autumn"],
-    "year": ["2019"],
+    "year": [2019],
     "images": [
       {
         "label": "First visiting in Europe",
@@ -111,7 +111,7 @@
   "752": {
     "country": "Sweden",
     "keyword": ["travel", "autumn"],
-    "year": ["2018"],
+    "year": [2018],
     "images": [
       {
         "label": "Stockholm",
@@ -136,7 +136,7 @@
   "356": {
     "country": "India",
     "keyword": ["travel", "new year"],
-    "year": ["2016"],
+    "year": [2016],
     "images": [
       {
         "label": "Kolkata",
@@ -163,7 +163,7 @@
   "840": {   
     "country": "United States of America",
     "keyword": ["study", "work"],
-    "year": ["2013", "2014", "2015"],
+    "year": [2013, 2014, 2015],
     "images": [
       {
         "label": "Work Days",
@@ -190,7 +190,7 @@
   "156": {
     "country": "China",
     "keyword": ["study", "summer"],
-    "year": ["2010"],
+    "year": [2010],
     "images": [
       {
         "label": "Exchange Scholarship",

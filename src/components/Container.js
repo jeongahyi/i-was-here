@@ -15,18 +15,26 @@ const info = mapInfo;
 const Container = () => {
   const classes = useStyles();
 
-  // Search states
-  const [countryCodes, setCountryCodes] = useState(['410','392','840']);
-  // const [country, setCountry] = useState('United States of America');
-  const keywords = ["Study", "Work", "Travel", "One day trip"];
+  const countryCodes = ["392", "410", "348", "040", "752", "356", "840", "156"]
+  const [filterCodes, setFilterCodes] = useState(countryCodes);
+  const keywords = ["study", "work", "travel", "one day trip"];
   const [filterKeywords, setFilterKeywords] = useState(keywords);
   const [years, setYears] = useState([2010,2021]);
 
   const handelCountryCodes = () => {
     console.info(filterKeywords, years);
-    // year match
-    // keyword match
-    setCountryCodes(['410']);
+    // year 392, 410, 348, 040, 752, 356, 840, 156
+    // keyword study work travel one day trip 
+    // work 392(japan), 840[United States of America]
+    const [ min, max ] = years;
+    const newCodes = Object.keys(info).filter(code => {
+      const hasYear = info[code].year.some((value) => (min <= value && max >= value));
+      const hasKeyword = info[code].keyword.some(value => filterKeywords.includes(value));
+      console.info(filterKeywords, hasKeyword);
+      return hasKeyword && hasYear;
+    });
+    console.log(newCodes)
+    setFilterCodes(newCodes);
   }
 
   return (
@@ -38,13 +46,10 @@ const Container = () => {
         filterKeywords={filterKeywords}
         setFilterKeywords={setFilterKeywords}
         handelCountryCodes={handelCountryCodes}
-        // country={country}
-        // setCountryCodes={setCountryCodes}
-        // setCountry={setCountry}
       />
       <MapWrapper
         mapInfo={mapInfo}
-        countryCodes={countryCodes}
+        filterCodes={filterCodes}
       />
     </main>
   )

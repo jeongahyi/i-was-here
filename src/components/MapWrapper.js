@@ -41,6 +41,7 @@ const useStyles = makeStyles((theme) => ({
   },
   menuButton: {
     marginLeft: theme.spacing(0),
+    // display: 'contents'
   },
   hide: {
     display: 'none',
@@ -83,7 +84,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const MapWrapper = ({ mapInfo, countryCodes }) => {
+const MapWrapper = ({ mapInfo, filterCodes }) => {
   const classes = useStyles();
   const [width, setWidth] = useState(window.innerWidth);
   const [height, setHeight] = useState(window.innerHeight);
@@ -138,7 +139,7 @@ const MapWrapper = ({ mapInfo, countryCodes }) => {
           </Tooltip>
           <Divider />
         </div>
-        {Object.keys(mapInfo).map((countryId) => {
+        {filterCodes.map((countryId) => {
           const countryInfo = mapInfo[countryId];
           return <CardItem key={countryId} data={countryInfo} width={drawerWidth} />
         })}
@@ -152,7 +153,7 @@ const MapWrapper = ({ mapInfo, countryCodes }) => {
           mapInfo={mapInfo}
           width={width}
           height={height}
-          countryCodes={countryCodes}
+          filterCodes={filterCodes}
         />
       </div>
     </>

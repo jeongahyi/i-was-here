@@ -14,6 +14,7 @@ const useStyles = makeStyles((theme) => ({
   search: {
     display: 'flex',
     flexDirection: 'row',
+    justifyContent: 'center',
     alignItems: 'center',
     paddingLeft: '20px',
     backgroundColor: 'white'
@@ -51,8 +52,11 @@ const valuetext = (value) => {
 }
 
 const Search = ({
-  setYears, years,
-  keywords, filterKeywords, setFilterKeywords,
+  setYears,
+  years,
+  keywords,
+  filterKeywords,
+  setFilterKeywords,
   handelCountryCodes
 }) => {
   const classes = useStyles();
@@ -78,13 +82,21 @@ const Search = ({
   };
 
   // clear
-  const handleClick = (event) => {
-    console.info('click', event.target.label)
-  }
+  const [color, setColor] = useState("primary");
   const [invisible, setInvisible] = useState(false);
   const handleBadgeVisibility = () => {
     setInvisible(!invisible);
   };
+  const handleClick = (event) => {
+    handleBadgeVisibility();
+    if (color === "primary") {
+      setColor("");
+      
+    } else {
+      setColor("primary");
+    }
+    console.info('click', event.target.label)
+  }
 
   return (
     <div className={classes.search}>
@@ -114,7 +126,12 @@ const Search = ({
       {/* Clear Filters */}
       <div className={classes.chip} >
         <Badge color="secondary" variant="dot" invisible={invisible}>
-          <Chip label="Clear Filters" onClick={handleClick} />
+          <Chip
+            label="Clear Filters"
+            onClick={handleClick}
+            color={color}
+            variant={"outlined"}
+          />
         </Badge>
       </div>
       {/* <TimeTracker

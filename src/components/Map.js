@@ -27,7 +27,7 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-const Map = ({ mapInfo, width, height, countryCodes }) => {
+const Map = ({ mapInfo, width, height, filterCodes }) => {
   const classes = useStyles();
   // map size, zoom
   height = height - 120;
@@ -59,7 +59,7 @@ const Map = ({ mapInfo, width, height, countryCodes }) => {
     }
 
     // traveled in the year
-    if (countryCodes.find(code => code === id)) {
+    if (filterCodes.find(code => code === id)) {
       color = "url('#gradientPinkRed')";
     }
 
