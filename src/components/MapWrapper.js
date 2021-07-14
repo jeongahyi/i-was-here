@@ -140,7 +140,6 @@ const MapWrapper = ({ mapInfo, countryCodes }) => {
         </div>
         {Object.keys(mapInfo).map((countryId) => {
           const countryInfo = mapInfo[countryId];
-          console.info(countryId, countryInfo);
           return <CardItem key={countryId} data={countryInfo} width={drawerWidth} />
         })}
       </Drawer>

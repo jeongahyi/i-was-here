@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import { 
@@ -8,6 +8,7 @@ import {
   Typography
 } from '@material-ui/core';
 import TimeTracker from './TimeTracker';
+import SearchChip from './SearchChip';
 
 const useStyles = makeStyles((theme) => ({
   search: {
@@ -49,54 +50,56 @@ const valuetext = (value) => {
   return `${value}°C`;
 }
 
-const Search = ({ setCountryCodes, setCountry, setYear, country, year }) => {
+const Search = ({
+  setYears, years,
+  keywords, filterKeywords, setFilterKeywords,
+  handelCountryCodes
+}) => {
   const classes = useStyles();
 
-  const handleClick = () => {
-    console.log('click')
+  // keyword
+  const handleKeywords = (label) => {
+    console.info("handleKeywords", label);
+    const isExisted = filterKeywords.some(keyword => keyword === label);
+    if (isExisted) {
+      const newFiltered = filterKeywords.filter(keyword => keyword !== label);
+      setFilterKeywords(newFiltered);
+    } else {
+      setFilterKeywords([...filterKeywords, label]);
+    }
+    handelCountryCodes();
   }
-  const [invisible, setInvisible] = React.useState(false);
 
-  const handleBadgeVisibility = () => {
-    setInvisible(!invisible);
+  // year
+  const handleChange = (event, newValue) => {
+    console.info("handleChange", newValue);
+    setYears(newValue);
+    handelCountryCodes();
   };
 
-  const [value, setValue] = React.useState([2010, 2021]);
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
+  // clear
+  const handleClick = (event) => {
+    console.info('click', event.target.label)
+  }
+  const [invisible, setInvisible] = useState(false);
+  const handleBadgeVisibility = () => {
+    setInvisible(!invisible);
   };
 
   return (
     <div className={classes.search}>
       {/* Type : Study, Work, Travel, One day trip */}
-      <Chip
-        label="Study"
-        onClick={handleClick}
-        className={classes.chip}
-        color="secondary"
-      />
-      <Chip
-        label="Work"
-        onClick={handleClick}
-        className={classes.chip}
-        color="secondary"
-      />
-      <Chip
-        label="Travel"
-        onClick={handleClick}
-        className={classes.chip}
-        color="secondary"
-      />
-      <Chip
-        label="One day trip"
-        onClick={handleClick}
-        className={classes.chip}
-        color="secondary"
-      />
+      {keywords.map(keyword => (
+        <SearchChip
+          label={keyword}
+          handleKeywords={handleKeywords}
+        />
+      ))}
+      
       {/* Year : 2010, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021 */}
-      <div className={classes.chip} >
+      <div className={classes.chip}>
         <Slider
-          value={value}
+          value={years}
           onChange={handleChange}
           valueLabelDisplay="auto"
           aria-labelledby="range-slider"
@@ -107,6 +110,8 @@ const Search = ({ setCountryCodes, setCountry, setYear, country, year }) => {
           className={classes.slider}
         />
       </div>
+
+      {/* Clear Filters */}
       <div className={classes.chip} >
         <Badge color="secondary" variant="dot" invisible={invisible}>
           <Chip label="Clear Filters" onClick={handleClick} />
@@ -121,51 +126,6 @@ const Search = ({ setCountryCodes, setCountry, setYear, country, year }) => {
         <LocationOnIcon />
         <Typography>I was in {country}, {year}</Typography>
       </div> */}
-      {/* <FormControl className={classes.formControl}>
-        <InputLabel id="demo-simple-select-label">Type</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          // value={age}
-          // onChange={handleChange}
-        >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
-          <MenuItem value={10}>
-            <Chip label="Work" onClick={handleClick} className={classes.chip} />
-          </MenuItem>
-          <MenuItem value={20}>
-            <Chip label="Study" onClick={handleClick} className={classes.chip} />
-          </MenuItem>
-          <MenuItem value={30}>
-            <Chip label="Travel" onClick={handleClick} className={classes.chip} />
-          </MenuItem>
-        </Select>
-      </FormControl> */}
-      {/* <TextField
-        id="search-keyword"
-        label="Search"
-        size="small"
-        placeholder="country, city, year..."
-        className={classes.keyword}
-      /> */}
-      {/* <FormControl className={classes.formControl}>
-        <InputLabel id="demo-simple-select-label">Period</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          // value={age}
-          // onChange={handleChange}
-        >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
-          <MenuItem value={10}>2013</MenuItem>
-          <MenuItem value={20}>2014</MenuItem>
-          <MenuItem value={30}>2015</MenuItem>
-        </Select>
-      </FormControl> */}
     </div>
   )
 }

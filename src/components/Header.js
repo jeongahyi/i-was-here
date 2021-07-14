@@ -23,9 +23,9 @@ const Header = () => {
   return (
     <header className={classes.header}>
       <Tabs>
-        <Tab label="Color your world"/>
+        <Tab label="Color my world"/>
         <ExploreIcon className={classes.icon} />
-        <Tab label="Log your journeys" />
+        <Tab label="Log my journeys" />
       </Tabs>
     </header>
   )
