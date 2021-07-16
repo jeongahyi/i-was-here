@@ -6,6 +6,7 @@ import {
   CardActionArea,
   CardContent,
   CardMedia,
+  Chip,
   Typography,
   MobileStepper,
 } from '@material-ui/core';
@@ -15,7 +16,11 @@ import {
 } from '@material-ui/core/styles';
 import {
   KeyboardArrowLeft,
-  KeyboardArrowRight
+  KeyboardArrowRight,
+  School,
+  Work,
+  Loyalty,
+  LocalSee,
 } from '@material-ui/icons';
 
 const useStyles = makeStyles(() => ({
@@ -44,9 +49,12 @@ const CardItem = ({ data, width }) => {
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
-  const maxSteps = _.get(data, 'images.length');
+  const maxSteps = _.get(data, 'images.length', 0);
+  // TO DO: case - no images make default images
   const images = _.get(data, 'images');
-
+  const keywords = _.get(data, 'keyword', []);
+  const years = _.get(data, 'year', []);
+  console.info('card',data);
   return (
     <Card className={classes.card}>
       <CardActionArea className={classes.cardActionArea}>
@@ -76,9 +84,25 @@ const CardItem = ({ data, width }) => {
           <Typography variant="h6" component="h2">
             {data.country}
           </Typography>
-          <Typography>
-            {data.purpose} • {data.season} {data.year}
-          </Typography>
+          <div>
+           {/* TO DO : make  list component */}
+            {keywords && keywords.map(word => (
+              <Chip
+                icon={<School />}
+                key={word}
+                label={word}
+                variant="outlined"
+              />
+            ))}
+            {years && years.map(time => (
+              <Chip
+                icon={<Loyalty />}
+                key={time}
+                label={time}
+                variant="outlined"
+              />
+            ))}
+          </div>
         </CardContent>
       </CardActionArea>
     </Card>

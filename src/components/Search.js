@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import LocationOnIcon from '@material-ui/icons/LocationOn';
+// import LocationOnIcon from '@material-ui/icons/LocationOn';
 import { 
   Badge,
   Slider,
   Chip,
   Typography
 } from '@material-ui/core';
-import TimeTracker from './TimeTracker';
+// import TimeTracker from './TimeTracker';
 import SearchChip from './SearchChip';
 
 const useStyles = makeStyles((theme) => ({
@@ -103,6 +103,7 @@ const Search = ({
       {/* Type : Study, Work, Travel, One day trip */}
       {keywords.map(keyword => (
         <SearchChip
+          key={keyword}
           label={keyword}
           handleKeywords={handleKeywords}
         />
