@@ -30,7 +30,7 @@ const useStyles = makeStyles(() => ({
 const Map = ({ mapInfo, width, height, filterCodes }) => {
   const classes = useStyles();
   // map size, zoom
-  height = height - 120;
+  height = height - 180;
   const initialTransform = {
     translateX: width/2,
     translateY: height/2 + 110,

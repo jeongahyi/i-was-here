@@ -5,12 +5,10 @@ import {
   AppBar,
   IconButton,
   Drawer,
-  Tooltip,
-  Divider,
 } from '@material-ui/core';
-import { Menu, FilterList } from '@material-ui/icons';
+import { Menu } from '@material-ui/icons';
 import Map from './Map';
-import CardItem from './CardItem';
+import List from './List';
 
 const drawerWidth = 650;
 
@@ -41,7 +39,9 @@ const useStyles = makeStyles((theme) => ({
   },
   menuButton: {
     marginLeft: theme.spacing(0),
-    // display: 'contents'
+    [theme.breakpoints.down('md')]: {
+      display: 'none',
+    },
   },
   hide: {
     display: 'none',
@@ -79,9 +79,6 @@ const useStyles = makeStyles((theme) => ({
     }),
     marginLeft: 0,
   },
-  filter: {
-    marginBottom: '10px',
-  }
 }));
 
 const MapWrapper = ({ mapInfo, filterCodes }) => {
@@ -131,18 +128,11 @@ const MapWrapper = ({ mapInfo, filterCodes }) => {
           paper: classes.drawerPaper,
         }}
       >
-        <div className={classes.filter}>
-          <Tooltip title="Filter list">
-            <IconButton aria-label="filter list">
-              <FilterList />
-            </IconButton>
-          </Tooltip>
-          <Divider />
-        </div>
-        {filterCodes.map((countryId) => {
-          const countryInfo = mapInfo[countryId];
-          return <CardItem key={countryId} data={countryInfo} width={drawerWidth} />
-        })}
+        <List
+          filterCodes={filterCodes}
+          mapInfo={mapInfo}
+          drawerWidth={drawerWidth}
+        />
       </Drawer>
       <div
         className={clsx(classes.content, {

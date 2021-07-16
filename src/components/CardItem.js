@@ -23,17 +23,18 @@ import {
   LocalSee,
 } from '@material-ui/icons';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   card: {
     overflow: 'auto',
     display: 'contents',
   },
   cardActionArea: {
+    padding: '10px',
     marginBottom: '10px',
   },
   cardMedia: {
     height: 320,
-    width: 450,
+    width: '100%',
   }
 }));
 
@@ -54,7 +55,7 @@ const CardItem = ({ data, width }) => {
   const images = _.get(data, 'images');
   const keywords = _.get(data, 'keyword', []);
   const years = _.get(data, 'year', []);
-  console.info('card',data);
+
   return (
     <Card className={classes.card}>
       <CardActionArea className={classes.cardActionArea}>
@@ -62,7 +63,6 @@ const CardItem = ({ data, width }) => {
           className={classes.cardMedia}
           image={images[activeStep].imgPath}
           title={data.country_name}
-          style={{width: width}}
         />
         <MobileStepper
           steps={maxSteps}

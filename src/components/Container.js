@@ -3,16 +3,19 @@ import { makeStyles } from '@material-ui/core/styles';
 import MapWrapper from './MapWrapper';
 import Search from './Search';
 import mapInfo from '../data/mapInfo.json';
+import List from './List';
 
 const useStyles = makeStyles(() => ({
   root: {
+    height: '700px',
+    overflow: 'scroll',
     bottom: '0',
   },
 }));
 
 const info = mapInfo;
 
-const Container = () => {
+const Container = ({ value }) => {
   const classes = useStyles();
 
   const countryCodes = ["392", "410", "348", "040", "752", "356", "840", "156"]
@@ -47,10 +50,16 @@ const Container = () => {
         setFilterKeywords={setFilterKeywords}
         handelCountryCodes={handelCountryCodes}
       />
-      <MapWrapper
-        mapInfo={mapInfo}
-        filterCodes={filterCodes}
-      />
+      {value && value === "Map" ?
+        <MapWrapper
+          mapInfo={mapInfo}
+          filterCodes={filterCodes}
+        /> :
+        <List
+          mapInfo={mapInfo}
+          filterCodes={filterCodes}
+        />
+      }
     </main>
   )
 }

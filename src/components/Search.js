@@ -12,12 +12,16 @@ import SearchChip from './SearchChip';
 
 const useStyles = makeStyles((theme) => ({
   search: {
+    backgroundColor: 'white',
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'center',
     alignItems: 'center',
-    paddingLeft: '20px',
-    backgroundColor: 'white'
+    justifyContent: 'flex-start',
+    overflow: 'scroll',
+    [theme.breakpoints.up('md')]: {
+      justifyContent: 'center',
+      paddingLeft: '20px',
+    },
   },
   slider: {
     width: '300px',
