@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { 
@@ -9,6 +9,7 @@ import {
 import { Menu } from '@material-ui/icons';
 import Map from './Map';
 import List from './List';
+import useSize from '../utils/useSize';
 
 const drawerWidth = 650;
 
@@ -83,23 +84,14 @@ const useStyles = makeStyles((theme) => ({
 
 const MapWrapper = ({ mapInfo, filterCodes }) => {
   const classes = useStyles();
-  const [width, setWidth] = useState(window.innerWidth);
-  const [height, setHeight] = useState(window.innerHeight);
+  const [width, height] = useSize();
 
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleDrawer = () => {
     setOpen(!open);
   }
-  useEffect(() => {
-    const handleWindowResize = () => {
-      setWidth(window.innerWidth);
-      setHeight(window.innerHeight);
-    }
-    window.addEventListener("resize", handleWindowResize);
-    return () => window.removeEventListener("resize", handleWindowResize)
-  }, []);
 
   return (
     <>
