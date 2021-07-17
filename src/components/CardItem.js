@@ -25,8 +25,8 @@ import {
 
 const useStyles = makeStyles((theme) => ({
   card: {
-    overflow: 'auto',
-    display: 'contents',
+    overflow: 'unset',
+    // display: 'contents',
   },
   cardActionArea: {
     padding: '10px',
@@ -35,6 +35,12 @@ const useStyles = makeStyles((theme) => ({
   cardMedia: {
     height: 320,
     width: '100%',
+  },
+  cardContent: {
+    padding: '5px',
+  },
+  chip: {
+    margin: '5px',
   }
 }));
 
@@ -80,7 +86,7 @@ const CardItem = ({ data, width }) => {
             </Button>
           }
         />
-        <CardContent>
+        <CardContent className={classes.cardContent}>
           <Typography variant="h6" component="h2">
             {data.country}
           </Typography>
@@ -92,6 +98,8 @@ const CardItem = ({ data, width }) => {
                 key={word}
                 label={word}
                 variant="outlined"
+                color="primary"
+                className={classes.chip}
               />
             ))}
             {years && years.map(time => (
@@ -100,6 +108,8 @@ const CardItem = ({ data, width }) => {
                 key={time}
                 label={time}
                 variant="outlined"
+                color="secondary"
+                className={classes.chip}
               />
             ))}
           </div>

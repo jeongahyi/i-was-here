@@ -14,7 +14,7 @@ const useStyles = makeStyles(() => ({
   title: {
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
     fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
     fontSize: "0.875rem",
     fontWeight: "500",

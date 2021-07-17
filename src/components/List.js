@@ -10,13 +10,14 @@ import CardItem from './CardItem';
 
 const useStyles = makeStyles((theme) => ({
   list: {
-    [theme.breakpoints.up('md')]: {
-
-    }
+    backgroundColor: 'antiquewhite',
   },
   filter: {
     marginBottom: '10px',
   },
+  items: {
+    margin: '5px',
+  }
 }));
 
 const List = ({ filterCodes, mapInfo, drawerWidth }) => {
@@ -31,7 +32,7 @@ const List = ({ filterCodes, mapInfo, drawerWidth }) => {
         </Tooltip>
         <Divider />
       </div>
-      <div>
+      <div className={classes.items}>
         {filterCodes.map((countryId) => {
           const countryInfo = mapInfo[countryId];
           return <CardItem
