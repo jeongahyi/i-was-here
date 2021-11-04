@@ -1,80 +1,80 @@
-import React, { useState } from 'react';
-import clsx from 'clsx';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import { 
-  AppBar,
-  IconButton,
-  Drawer,
-} from '@material-ui/core';
-import { Menu } from '@material-ui/icons';
-import Map from './Map';
-import List from './List';
-import useSize from '../utils/useSize';
+import React, { useState } from "react";
+import clsx from "clsx";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { AppBar, IconButton, Drawer } from "@material-ui/core";
+import { Menu } from "@material-ui/icons";
+import Map from "./Map";
+import List from "./List";
+import useSize from "../utils/useSize";
 
 const drawerWidth = 650;
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
+    display: "flex",
   },
   appBar: {
-    transition: theme.transitions.create(['margin', 'width'], {
+    transition: theme.transitions.create(["margin", "width"], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    top: 'auto',
-    width: '100px',
-    left: '0',
-    marginTop: '10px'
+    top: "auto",
+    width: "60px",
+    left: "0",
+    marginLeft: "10px",
+    marginTop: "10px",
+    borderRadius: "5%",
   },
   appBarShift: {
-    marginLeft: drawerWidth,
-    transition: theme.transitions.create(['margin', 'width'], {
+    transition: theme.transitions.create(["margin", "width"], {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
     }),
-    top: 'auto',
-    width: '100px',
-    left: '0',
-    marginTop: '10px'
+    top: "auto",
+    width: "60px",
+    left: "0",
+    marginLeft: "680px",
+    marginTop: "10px",
+    borderRadius: "5%",
   },
   menuButton: {
     marginLeft: theme.spacing(0),
-    [theme.breakpoints.down('md')]: {
-      display: 'none',
+    [theme.breakpoints.down("md")]: {
+      display: "none",
     },
+    fontSize: "1rem",
   },
   hide: {
-    display: 'none',
+    display: "none",
   },
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
-    paddingLeft: '10px',
-    display: 'contents',
+    paddingLeft: "10px",
+    display: "contents",
   },
   drawerPaper: {
     width: drawerWidth,
-    top: 'auto',
-    overflowY: 'auto',
-    padding: '10px'
+    top: "auto",
+    overflowY: "auto",
+    padding: "10px",
   },
   drawerHeader: {
-    display: 'flex',
-    alignItems: 'center',
+    display: "flex",
+    alignItems: "center",
     padding: theme.spacing(0, 1),
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
-    justifyContent: 'flex-end',
+    justifyContent: "flex-end",
   },
   content: {
-    transition: theme.transitions.create('margin', {
+    transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
   },
   contentShift: {
-    transition: theme.transitions.create('margin', {
+    transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
     }),
@@ -91,7 +91,7 @@ const MapWrapper = ({ mapInfo, filterCodes }) => {
 
   const handleDrawer = () => {
     setOpen(!open);
-  }
+  };
 
   return (
     <>
@@ -108,7 +108,9 @@ const MapWrapper = ({ mapInfo, filterCodes }) => {
           edge="start"
           className={clsx(classes.menuButton)}
         >
-          <span><Menu />list</span>
+          <span>
+            <Menu />
+          </span>
         </IconButton>
       </AppBar>
       <Drawer
@@ -139,7 +141,7 @@ const MapWrapper = ({ mapInfo, filterCodes }) => {
         />
       </div>
     </>
-  )
-}
+  );
+};
 
 export default MapWrapper;

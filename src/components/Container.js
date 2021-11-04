@@ -24,19 +24,28 @@ const Container = ({ value }) => {
   const [filterKeywords, setFilterKeywords] = useState(keywords);
   const [years, setYears] = useState([2010,2021]);
 
-  const handelCountryCodes = () => {
+  const handelCountryCodes = (label) => {
     console.info(filterKeywords, years);
+    if (filterKeywords.includes(label)) {
+      console.log('remove');
+      
+      const filtered = filterKeywords.filter(value => value !== label);
+      setFilterCodes(filtered);
+    } else {
+      console.log('add')
+      setFilterCodes([...filterKeywords, label]);
+    }
     // year 392, 410, 348, 040, 752, 356, 840, 156
     // keyword study work travel one day trip 
     // work 392(japan), 840[United States of America]
     const [ min, max ] = years;
     const newCodes = Object.keys(info).filter(code => {
       const hasYear = info[code].year.some((value) => (min <= value && max >= value));
-      const hasKeyword = info[code].keyword.some(value => filterKeywords.includes(value));
-      console.info(filterKeywords, hasKeyword);
+      const hasKeyword = info[code].keyword.some(word => filterKeywords.includes(word));
+      // console.info(filterKeywords, hasKeyword);
       return hasKeyword && hasYear;
     });
-    console.log(newCodes)
+    // console.log(newCodes)
     setFilterCodes(newCodes);
   }
 

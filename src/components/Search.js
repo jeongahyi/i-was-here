@@ -67,20 +67,20 @@ const Search = ({
 
   // keyword
   const handleKeywords = (label) => {
-    console.info("handleKeywords", label);
-    const isExisted = filterKeywords.some(keyword => keyword === label);
-    if (isExisted) {
-      const newFiltered = filterKeywords.filter(keyword => keyword !== label);
-      setFilterKeywords(newFiltered);
-    } else {
-      setFilterKeywords([...filterKeywords, label]);
-    }
-    handelCountryCodes();
+    console.info("clicked label: ", label);
+    // const isExisted = filterKeywords.some(keyword => keyword === label);
+    // if (isExisted) {
+    //   const newFiltered = filterKeywords.filter(keyword => keyword !== label);
+    //   setFilterKeywords(newFiltered);
+    // } else {
+    //   setFilterKeywords([...filterKeywords, label]);
+    // }
+    handelCountryCodes(label);
   }
 
   // year
   const handleChange = (event, newValue) => {
-    console.info("handleChange", newValue);
+    // console.info("handleChange", newValue);
     setYears(newValue);
     handelCountryCodes();
   };
@@ -95,11 +95,10 @@ const Search = ({
     handleBadgeVisibility();
     if (color === "primary") {
       setColor("");
-      
     } else {
       setColor("primary");
     }
-    console.info('click', event.target.label)
+    // console.info('click', event.target.label)
   }
 
   return (
