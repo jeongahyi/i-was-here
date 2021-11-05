@@ -7,8 +7,8 @@ import Map from "./Map";
 import List from "./List";
 import useSize from "../utils/useSize";
 
-const drawerWidth = 650;
-
+const drawerWidth = 700;
+const buttonWidth = drawerWidth + 30;
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
     top: "auto",
     width: "60px",
     left: "0",
-    marginLeft: "680px",
+    marginLeft: buttonWidth,
     marginTop: "10px",
     borderRadius: "5%",
   },
