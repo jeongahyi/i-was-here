@@ -10,6 +10,7 @@ const useStyles = makeStyles((theme) => ({
   },
   items: {
     margin: "5px",
+    paddingBottom: "100px",
   },
 }));
 
