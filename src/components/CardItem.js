@@ -1,5 +1,6 @@
 import React from "react";
 import * as _ from "lodash";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Grid, ButtonBase, Chip, Typography, Divider } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { School, Work, Loyalty, LocalSee } from "@material-ui/icons";
@@ -43,11 +44,11 @@ const CardItem = ({ data }) => {
       <Grid container>
         <Grid item className={classes.item}>
           <ButtonBase className={classes.image}>
-            <img
+            <LazyLoadImage
               className={classes.img}
               alt="complex"
               src={images[0].imgPath}
-            ></img>
+            ></LazyLoadImage>
           </ButtonBase>
         </Grid>
         <Grid item xs={12} sm container className={classes.item}>
