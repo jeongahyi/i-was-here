@@ -20,11 +20,11 @@ const useStyles = makeStyles({
     marginButtom: 12,
   },
 });
-const PopOver = ({ data, id, open, anchorEl, setAnchorEl }) => {
+const PopOver = ({ trip, id, open, anchorEl, setAnchorEl }) => {
   const classes = useStyles();
-  const keywords = _.get(data, "keyword", []);
-  const years = _.get(data, "year", []);
-  const country = _.get(data, "country", []);
+  const tags = _.get(trip, "tags", []);
+  const years = _.get(trip, "year", []);
+  const countryName = _.get(trip, "country_name", []);
   // TO DO: display image
   // const maxSteps = _.get(data, 'images.length', 0);
   // // TO DO: case - no images make default images
@@ -41,7 +41,7 @@ const PopOver = ({ data, id, open, anchorEl, setAnchorEl }) => {
       <Card className={classes.root}>
         <CardContent>
           <Typography className={classes.title} color="textSecondary">
-            {country}
+            {countryName}
           </Typography>
           <Typography variant="h5" component="h2">
             Title
@@ -53,7 +53,7 @@ const PopOver = ({ data, id, open, anchorEl, setAnchorEl }) => {
             Lorem ipsum dolor sit amet, et ridens laboramus deterruisset quo, an
             ubique delenit voluptua per.
           </Typography>
-          <Typography>{keywords}</Typography>
+          <Typography>{tags}</Typography>
         </CardContent>
       </Card>
     </Popover>

@@ -7,12 +7,17 @@ const firebaseConfig = {
   authDomain: `${projectName}.firebaseapp.com`,
   projectId: `${projectName}`,
 };
+const tripList = [];
+
 initializeApp(firebaseConfig);
 const db = getFirestore();
 
-export async function getData(path) {
+export async function getList(path) {
   const querySnapshot = await getDocs(collection(db, path));
   querySnapshot.forEach((doc) => {
-    console.info(doc.data());
+    tripList.push(doc.data());
   });
+  return tripList;
 }
+
+export default db;

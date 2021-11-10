@@ -31,13 +31,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const CardItem = ({ data }) => {
+const CardItem = ({ trip }) => {
   const classes = useStyles();
-
-  // TO DO: case - no images make default images
-  const images = _.get(data, "images");
-  const keywords = _.get(data, "keyword", []);
-  const years = _.get(data, "year", []);
+  // country, title, date, tags, image
+  const countryName = _.get(trip, "country_name");
+  const tags = _.get(trip, "tags", []);
+  // TO DO: title, start_date, end_date input
+  const title = _.get(trip, "title", "dummy TITLE");
+  const years = ["1000"];
+  const image = _.get(trip, "image_url", "");
+  const defaultImage =
+    "https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60";
 
   return (
     <div className={classes.card}>
@@ -46,8 +50,8 @@ const CardItem = ({ data }) => {
           <ButtonBase className={classes.image}>
             <LazyLoadImage
               className={classes.img}
-              alt="complex"
-              src={images[0].imgPath}
+              alt={`${countryName}'s picture`}
+              src={image || defaultImage}
             ></LazyLoadImage>
           </ButtonBase>
         </Grid>
@@ -55,10 +59,10 @@ const CardItem = ({ data }) => {
           <Grid item xs container direction="column" spacing={2}>
             <Grid item xs>
               <Typography gutterBottom variant="subtitle1">
-                {data.country}
+                {countryName}
               </Typography>
               <Typography variant="h6" gutterBottom>
-                Title
+                {title}
               </Typography>
               <div>
                 {years &&
@@ -74,8 +78,8 @@ const CardItem = ({ data }) => {
                   ))}
               </div>
               <div>
-                {keywords &&
-                  keywords.map((word) => (
+                {tags &&
+                  tags.map((word) => (
                     <Chip
                       icon={<School />}
                       key={word}

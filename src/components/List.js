@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const List = ({ filterCodes, mapInfo, drawerWidth }) => {
+const List = ({ trips, drawerWidth }) => {
   const classes = useStyles();
   return (
     <div>
@@ -27,12 +27,10 @@ const List = ({ filterCodes, mapInfo, drawerWidth }) => {
         <Divider />
       </div>
       <div className={classes.items}>
-        {filterCodes.map((countryId) => {
-          const countryInfo = mapInfo[countryId];
-          return (
-            <CardItem key={countryId} data={countryInfo} width={drawerWidth} />
-          );
-        })}
+        {trips &&
+          trips.map((trip) => {
+            return <CardItem key={trip.id} trip={trip} width={drawerWidth} />;
+          })}
       </div>
     </div>
   );

@@ -82,11 +82,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const MapWrapper = ({ mapInfo, filterCodes }) => {
+const MapWrapper = ({ trips }) => {
   const classes = useStyles();
   const [width, height] = useSize();
-
-  const theme = useTheme();
   const [open, setOpen] = useState(false);
 
   const handleDrawer = () => {
@@ -122,23 +120,14 @@ const MapWrapper = ({ mapInfo, filterCodes }) => {
           paper: classes.drawerPaper,
         }}
       >
-        <List
-          filterCodes={filterCodes}
-          mapInfo={mapInfo}
-          drawerWidth={drawerWidth}
-        />
+        <List trips={trips} drawerWidth={drawerWidth} />
       </Drawer>
       <div
         className={clsx(classes.content, {
           [classes.contentShift]: open,
         })}
       >
-        <Map
-          mapInfo={mapInfo}
-          width={width}
-          height={height}
-          filterCodes={filterCodes}
-        />
+        <Map trips={trips} width={width} height={height} />
       </div>
     </>
   );

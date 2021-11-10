@@ -6,7 +6,6 @@ import Header from "./components/Header";
 import Container from "./components/Container";
 // import Footer from './components/Footer';
 import "./styles/global.scss";
-import { getData } from "./utils/firestore";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,11 +30,6 @@ const useStyles = makeStyles((theme) => ({
 const App = () => {
   const classes = useStyles();
   const [value, setValue] = useState("Map");
-  try {
-    getData("trip");
-  } catch {
-    console.log("firebase is not working");
-  }
   return (
     <div className={classes.root}>
       <Header />

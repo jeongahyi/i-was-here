@@ -28,7 +28,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const Map = ({ mapInfo, width, height, filterCodes }) => {
+const Map = ({ trips, width, height }) => {
   const classes = useStyles();
   // map size, zoom
   height = height - 180;
@@ -55,16 +55,20 @@ const Map = ({ mapInfo, width, height, filterCodes }) => {
     let color = countryColor(parseInt(id));
 
     // traveled
-    if (mapInfo[feature.id]) {
-      color = "#ffc14b";
-    }
-
-    // traveled in the year
-    if (filterCodes.find((code) => code === id)) {
+    if (getTripInfo(id)) {
       color = "url('#gradientPinkRed')";
     }
 
+    // traveled in the year
+    // if (filterCodes.find((code) => code === id)) {
+    //   color = "url('#gradientPinkRed')";
+    // }
+
     return color;
+  };
+
+  const getTripInfo = (id) => {
+    return trips.find((trip) => trip.map_id == id);
   };
 
   // tooltip
@@ -80,14 +84,14 @@ const Map = ({ mapInfo, width, height, filterCodes }) => {
 
   // popover
   const [anchorEl, setAnchorEl] = useState(null);
-  const [data, setData] = useState(null);
+  const [trip, setTrip] = useState(null);
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
   const [formOpen, setFormOpen] = useState(false);
 
   const handleClick = (event, feature) => {
-    if (mapInfo[feature.id]) {
-      setData(mapInfo[feature.id]);
+    if (getTripInfo(feature.id)) {
+      setTrip(getTripInfo(feature.id));
       setAnchorEl(event.currentTarget);
     } else {
       console.log(feature.id);
@@ -178,9 +182,9 @@ const Map = ({ mapInfo, width, height, filterCodes }) => {
           </div>
         )}
       </Zoom>
-      {anchorEl && data && (
+      {anchorEl && trip && (
         <PopOver
-          data={data}
+          trip={trip}
           id={id}
           open={open}
           anchorEl={anchorEl}
