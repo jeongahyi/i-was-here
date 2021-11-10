@@ -1,22 +1,31 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import { BottomNavigation, BottomNavigationAction } from "@material-ui/core";
+import { List, MapOutlined } from "@material-ui/icons";
+import Header from "./Header";
 import MapWrapper from "./MapWrapper";
 // import Search from "./Search";
-// import mapInfo from "../data/mapInfo.json";
-import List from "./List";
+import TripList from "./TripList";
 import { getList } from "../utils/firestore";
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     height: "700px",
     overflow: "scroll",
     bottom: "0",
   },
+  bottomNav: {
+    [theme.breakpoints.up("md")]: {
+      display: "none",
+    },
+    bottom: 0,
+    width: "100%",
+    backgroundColor: "inherit",
+  },
 }));
 
-// const info = mapInfo;
-
-const Container = ({ value }) => {
+const Container = () => {
   const classes = useStyles();
+  const [value, setValue] = useState("Map");
   // const countryCodes = ["392", "410", "348", "040", "752", "356", "840", "156"];
   // const [filterCodes, setFilterCodes] = useState(countryCodes);
   // const keywords = ["study", "work", "travel", "one day trip"];
@@ -63,8 +72,10 @@ const Container = ({ value }) => {
   // };
 
   return (
-    <main className={classes.root}>
-      {/* <Search
+    <>
+      <Header />
+      <main className={classes.root}>
+        {/* <Search
         years={years}
         setYears={setYears}
         keywords={keywords}
@@ -72,12 +83,29 @@ const Container = ({ value }) => {
         setFilterKeywords={setFilterKeywords}
         handelCountryCodes={handelCountryCodes}
       /> */}
-      {value && trips && value === "Map" ? (
-        <MapWrapper trips={trips} />
-      ) : (
-        <List trips={trips} />
-      )}
-    </main>
+        {value && trips && value === "Map" ? (
+          <MapWrapper trips={trips} />
+        ) : (
+          <TripList trips={trips} />
+        )}
+      </main>
+      <BottomNavigation
+        value={value}
+        onChange={(event, newValue) => {
+          setValue(newValue);
+        }}
+        showLabels
+        className={classes.bottomNav}
+      >
+        <BottomNavigationAction value="List" label="List" icon={<List />} />
+        <BottomNavigationAction
+          value="Map"
+          label="Map"
+          icon={<MapOutlined />}
+        />
+      </BottomNavigation>
+      {/* <Footer /> */}
+    </>
   );
 };
 

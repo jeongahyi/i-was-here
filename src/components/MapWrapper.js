@@ -4,7 +4,7 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { AppBar, IconButton, Drawer } from "@material-ui/core";
 import { Menu } from "@material-ui/icons";
 import Map from "./Map";
-import List from "./List";
+import TripList from "./TripList";
 import useSize from "../utils/useSize";
 
 const drawerWidth = 700;
@@ -120,7 +120,7 @@ const MapWrapper = ({ trips }) => {
           paper: classes.drawerPaper,
         }}
       >
-        <List trips={trips} drawerWidth={drawerWidth} />
+        <TripList trips={trips} drawerWidth={drawerWidth} />
       </Drawer>
       <div
         className={clsx(classes.content, {

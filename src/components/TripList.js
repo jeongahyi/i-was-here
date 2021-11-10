@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const List = ({ trips, drawerWidth }) => {
+const TripList = ({ trips, drawerWidth }) => {
   const classes = useStyles();
   return (
     <div>
@@ -36,4 +36,4 @@ const List = ({ trips, drawerWidth }) => {
   );
 };
 
-export default List;
+export default TripList;
