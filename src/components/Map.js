@@ -94,7 +94,7 @@ const Map = ({ trips, width, height }) => {
       setTrip(getTripInfo(feature.id));
       setAnchorEl(event.currentTarget);
     } else {
-      console.log(feature.id);
+      console.log(feature);
       setFormOpen(true);
     }
   };
