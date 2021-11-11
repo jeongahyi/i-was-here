@@ -1,5 +1,11 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs } from "firebase/firestore";
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  setDoc,
+  doc,
+} from "firebase/firestore";
 
 const projectName = "iwashere-project";
 const firebaseConfig = {
@@ -20,4 +26,16 @@ export async function getList(path) {
   return tripList;
 }
 
+export async function setTrip(data) {
+  console.log(data);
+  await setDoc(doc(db, "trips", data.id), {
+    id: data.id,
+    map_id: data.mapId,
+    country_name: data.countryName,
+    start_date: data.startDate,
+    end_date: data.endDate,
+    tags: data.tags,
+    image_url: data.imageUrl,
+  });
+}
 export default db;
