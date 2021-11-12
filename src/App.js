@@ -1,7 +1,19 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import { createMuiTheme, makeStyles } from "@material-ui/core/styles";
+import { ThemeProvider } from "@material-ui/styles";
 import Container from "./components/Container";
 import "./styles/global.scss";
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: "#FF8E53",
+    },
+    secondary: {
+      main: "#FE6B8B",
+    },
+  },
+});
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,9 +29,9 @@ const useStyles = makeStyles((theme) => ({
 const App = () => {
   const classes = useStyles();
   return (
-    <div className={classes.root}>
+    <ThemeProvider theme={theme} className={classes.root}>
       <Container />
-    </div>
+    </ThemeProvider>
   );
 };
 
