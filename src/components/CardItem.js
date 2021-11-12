@@ -39,9 +39,7 @@ const CardItem = ({ trip }) => {
   const date = _.get(trip, "start_date").toDate().getFullYear();
   const memo = _.get(trip, "memo");
   const tags = _.get(trip, "tags", []);
-  // TO DO: upsplash api
-  const defaultImage =
-    "https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60";
+  const image = `https://source.unsplash.com/random/320×200?${countryName}&auto=format&fit=crop`;
 
   return (
     <div className={classes.card}>
@@ -51,7 +49,7 @@ const CardItem = ({ trip }) => {
             <LazyLoadImage
               className={classes.img}
               alt={`${countryName}'s picture`}
-              src={defaultImage}
+              src={image}
             ></LazyLoadImage>
           </ButtonBase>
         </Grid>
