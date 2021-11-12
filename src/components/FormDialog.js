@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import * as _ from "lodash";
 import {
   Grid,
   Dialog,
@@ -8,6 +9,7 @@ import {
   DialogActions,
   TextField,
   Button,
+  Checkbox,
 } from "@material-ui/core";
 import DateFnsUtils from "@date-io/date-fns";
 import {
@@ -17,23 +19,24 @@ import {
 import { setTrip } from "../utils/firestore";
 
 const FormDialog = (props) => {
-  const { open, onClose } = props;
+  const { open, onClose, countryInfo } = props;
   const [startDate, handleStartChange] = useState(new Date());
   const [endDate, handleEndChange] = useState(new Date());
   const handleClose = () => {
     onClose();
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (event) => {
     // dummy data
     const data = {
-      id: "4",
-      mapId: "752",
-      countryName: "Sweden",
+      id: "5",
+      mapId: _.get(countryInfo, "id"),
+      countryName: _.get(countryInfo, "properties.name"),
+      title: "",
       startDate: startDate,
       endDate: endDate,
       tags: ["travel"],
-      imageUrl: "",
+      memo: "",
     };
     await setTrip(data);
     onClose();
@@ -51,6 +54,7 @@ const FormDialog = (props) => {
       <DialogContent>
         <Grid item xs container direction="column" spacing={2}>
           <DialogContentText>Please add new trip.</DialogContentText>
+          <TextField autoFocus margin="dense" id="title" label="Title" />
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <KeyboardDatePicker
               disableToolbar
@@ -79,13 +83,12 @@ const FormDialog = (props) => {
               }}
             />
           </MuiPickersUtilsProvider>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="tags"
-            label="Tags"
-            type="tags"
+          <Checkbox
+            color="primary"
+            inputProps={{ "aria-label": "secondary checkbox" }}
+            label="travel"
           />
+          <TextField margin="dense" id="memo" label="Memo" />
         </Grid>
       </DialogContent>
       <DialogActions>

@@ -88,13 +88,15 @@ const Map = ({ trips, width, height }) => {
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
   const [formOpen, setFormOpen] = useState(false);
-
+  // TO DO: refactor countryInfo with trip info
+  const [countryInfo, setCountryInfo] = useState(null);
   const handleClick = (event, feature) => {
     if (getTripInfo(feature.id)) {
       setTrip(getTripInfo(feature.id));
       setAnchorEl(event.currentTarget);
     } else {
       console.log(feature);
+      setCountryInfo(feature);
       setFormOpen(true);
     }
   };
@@ -194,7 +196,11 @@ const Map = ({ trips, width, height }) => {
       {tooltipOpen && tooltipData && (
         <ToolTip top={tooltipTop} left={tooltipLeft} data={tooltipData} />
       )}
-      <FormDialog open={formOpen} onClose={handleClose} />
+      <FormDialog
+        open={formOpen}
+        onClose={handleClose}
+        countryInfo={countryInfo}
+      />
     </div>
   );
 };
