@@ -13,7 +13,7 @@ const firebaseConfig = {
   authDomain: `${projectName}.firebaseapp.com`,
   projectId: `${projectName}`,
 };
-const tripList = [];
+const list = [];
 
 initializeApp(firebaseConfig);
 const db = getFirestore();
@@ -21,9 +21,9 @@ const db = getFirestore();
 export async function getList(path) {
   const querySnapshot = await getDocs(collection(db, path));
   querySnapshot.forEach((doc) => {
-    tripList.push(doc.data());
+    list.push(doc.data());
   });
-  return tripList;
+  return list;
 }
 
 export async function setTrip(data) {
@@ -35,7 +35,8 @@ export async function setTrip(data) {
     start_date: data.startDate,
     end_date: data.endDate,
     tags: data.tags,
-    image_url: data.imageUrl,
+    title: data.title,
+    memo: data.memo,
   });
 }
 export default db;

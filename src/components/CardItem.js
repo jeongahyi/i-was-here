@@ -40,6 +40,7 @@ const CardItem = ({ trip }) => {
   const title = _.get(trip, "title", "dummy TITLE");
   const years = ["1000"];
   const image = _.get(trip, "image_url", "");
+  const memo = _.get(trip, "memo");
   const defaultImage =
     "https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60";
 
@@ -63,6 +64,10 @@ const CardItem = ({ trip }) => {
               </Typography>
               <Typography variant="h6" gutterBottom>
                 {title}
+              </Typography>
+              <Typography variant="body2" component="p">
+                {memo ||
+                  "Lorem ipsum dolor sit amet, et ridens laboramus deterruisset quo, an ubique delenit voluptua per."}
               </Typography>
               <div>
                 {years &&
