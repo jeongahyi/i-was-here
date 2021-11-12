@@ -22,16 +22,19 @@ const FormDialog = (props) => {
   const { open, onClose, countryInfo } = props;
   const [startDate, handleStartChange] = useState(new Date());
   const [endDate, handleEndChange] = useState(new Date());
+  const countryName = _.get(countryInfo, "properties.name");
+
   const handleClose = () => {
     onClose();
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async () => {
     // dummy data
     const data = {
+      // TO DO: create unique id
       id: "5",
       mapId: _.get(countryInfo, "id"),
-      countryName: _.get(countryInfo, "properties.name"),
+      countryName: countryName,
       title: "",
       startDate: startDate,
       endDate: endDate,
@@ -41,7 +44,8 @@ const FormDialog = (props) => {
     await setTrip(data);
     onClose();
   };
-
+  // TO DO: Create form
+  // TO DO: Display image
   return (
     <Dialog
       open={open}
@@ -49,11 +53,10 @@ const FormDialog = (props) => {
       onClose={handleClose}
     >
       <DialogTitle id="simple-dialog-title">
-        Add country to the list
+        Add {countryName} to my list
       </DialogTitle>
       <DialogContent>
         <Grid item xs container direction="column" spacing={2}>
-          <DialogContentText>Please add new trip.</DialogContentText>
           <TextField autoFocus margin="dense" id="title" label="Title" />
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <KeyboardDatePicker
@@ -89,6 +92,9 @@ const FormDialog = (props) => {
             label="travel"
           />
           <TextField margin="dense" id="memo" label="Memo" />
+          <DialogContentText>
+            Please press submit button to add a new trip.
+          </DialogContentText>
         </Grid>
       </DialogContent>
       <DialogActions>
