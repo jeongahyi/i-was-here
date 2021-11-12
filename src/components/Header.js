@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-// import { Tabs, Tab, Avatar } from '@material-ui/core';
-import { Explore, Person } from "@material-ui/icons";
+import { Avatar } from "@material-ui/core";
+import { Explore } from "@material-ui/icons";
 
 const useStyles = makeStyles(() => ({
   header: {
@@ -23,6 +23,9 @@ const useStyles = makeStyles(() => ({
     padding: "6px 12px",
     fontSize: "2.5em",
   },
+  avatar: {
+    margin: "5px 10px",
+  },
 }));
 
 const Header = () => {
@@ -33,13 +36,12 @@ const Header = () => {
         <Explore className={classes.icon} color="secondary" />
         <p>Color my world</p>
       </div>
-      {/* <Tabs>
-        <Tab label="Color my world"/>
-        
-        <Tab label="Log my journey" />
-      </Tabs> */}
       <div>
-        <Person className={classes.icon} color="primary" />
+        <Avatar
+          className={classes.avatar}
+          alt="Jay Yi"
+          src={process.env.PUBLIC_URL + "images/avatar/1.jpeg"}
+        />
       </div>
     </header>
   );
