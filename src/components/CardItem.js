@@ -33,14 +33,13 @@ const useStyles = makeStyles((theme) => ({
 
 const CardItem = ({ trip }) => {
   const classes = useStyles();
-  // country, title, date, tags, image
+
   const countryName = _.get(trip, "country_name");
-  const tags = _.get(trip, "tags", []);
-  // TO DO: title, start_date, end_date input
   const title = _.get(trip, "title", "dummy TITLE");
-  const years = ["1000"];
-  const image = _.get(trip, "image_url", "");
+  const date = _.get(trip, "start_date").toDate().getFullYear();
   const memo = _.get(trip, "memo");
+  const tags = _.get(trip, "tags", []);
+  // TO DO: upsplash api
   const defaultImage =
     "https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60";
 
@@ -52,7 +51,7 @@ const CardItem = ({ trip }) => {
             <LazyLoadImage
               className={classes.img}
               alt={`${countryName}'s picture`}
-              src={image || defaultImage}
+              src={defaultImage}
             ></LazyLoadImage>
           </ButtonBase>
         </Grid>
@@ -70,17 +69,15 @@ const CardItem = ({ trip }) => {
                   "Lorem ipsum dolor sit amet, et ridens laboramus deterruisset quo, an ubique delenit voluptua per."}
               </Typography>
               <div>
-                {years &&
-                  years.map((time) => (
-                    <Chip
-                      icon={<Loyalty />}
-                      key={time}
-                      label={time}
-                      variant="outlined"
-                      color="secondary"
-                      className={classes.chip}
-                    />
-                  ))}
+                {date && (
+                  <Chip
+                    icon={<Loyalty />}
+                    label={date}
+                    variant="outlined"
+                    color="secondary"
+                    className={classes.chip}
+                  />
+                )}
               </div>
               <div>
                 {tags &&

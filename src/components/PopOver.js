@@ -22,11 +22,13 @@ const useStyles = makeStyles({
 });
 const PopOver = ({ trip, id, open, anchorEl, setAnchorEl }) => {
   const classes = useStyles();
-  const tags = _.get(trip, "tags", []);
-  const years = _.get(trip, "year", []);
+
   const countryName = _.get(trip, "country_name", []);
   const title = _.get(trip, "title");
+  const date = _.get(trip, "start_date").toDate().getFullYear();
   const memo = _.get(trip, "memo");
+  const tags = _.get(trip, "tags", []);
+  console.log(date);
   // TO DO: display image
   // const maxSteps = _.get(data, 'images.length', 0);
   // // TO DO: case - no images make default images
@@ -49,7 +51,7 @@ const PopOver = ({ trip, id, open, anchorEl, setAnchorEl }) => {
             {title}
           </Typography>
           <Typography className={classes.pos} color="textSecondary">
-            {years}
+            {date}
           </Typography>
           <Typography variant="body2" component="p">
             {memo ||
