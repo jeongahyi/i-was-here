@@ -3,7 +3,7 @@ import {
   getFirestore,
   collection,
   getDocs,
-  setDoc,
+  addDoc,
   doc,
 } from "firebase/firestore";
 
@@ -28,8 +28,7 @@ export async function getList(path) {
 
 export async function setTrip(data) {
   console.log(data);
-  await setDoc(doc(db, "trips", data.id), {
-    id: data.id,
+  await addDoc(collection(db, "trips"), {
     map_id: data.mapId,
     country_name: data.countryName,
     start_date: data.startDate,

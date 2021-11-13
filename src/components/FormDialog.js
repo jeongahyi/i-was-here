@@ -32,7 +32,6 @@ const FormDialog = (props) => {
     // dummy data
     const data = {
       // TO DO: create unique id
-      id: "5",
       mapId: _.get(countryInfo, "id"),
       countryName: countryName,
       title: "",
