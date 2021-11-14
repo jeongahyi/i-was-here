@@ -31,10 +31,10 @@ export async function setTrip(data) {
   await addDoc(collection(db, "trips"), {
     map_id: data.mapId,
     country_name: data.countryName,
+    title: data.title,
     start_date: data.startDate,
     end_date: data.endDate,
     tags: data.tags,
-    title: data.title,
     memo: data.memo,
   });
 }

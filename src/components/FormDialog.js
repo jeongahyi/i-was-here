@@ -7,6 +7,8 @@ import {
   DialogContent,
   DialogContentText,
   DialogActions,
+  FormGroup,
+  FormControlLabel,
   TextField,
   Button,
   Checkbox,
@@ -20,29 +22,48 @@ import { setTrip } from "../utils/firestore";
 
 const FormDialog = (props) => {
   const { open, onClose, countryInfo } = props;
+  const countryName = _.get(countryInfo, "properties.name");
+
+  const [title, setTitle] = useState("");
   const [startDate, handleStartChange] = useState(new Date());
   const [endDate, handleEndChange] = useState(new Date());
-  const countryName = _.get(countryInfo, "properties.name");
+  const [memo, setMemo] = useState("");
+  const [tags, setTags] = useState({
+    travel: false,
+    work: false,
+    study: false,
+  });
+
+  const handleChange = (event) => {
+    if (event.target.id == "title") {
+      setTitle(event.target.value);
+    } else if (event.target.id == "memo") {
+      setMemo(event.target.value);
+    }
+  };
+
+  const handleTagsChange = (event) => {
+    setTags({ ...tags, [event.target.name]: event.target.checked });
+  };
+
+  const handleSubmit = async () => {
+    const data = {
+      mapId: _.get(countryInfo, "id"),
+      countryName: countryName,
+      title: title,
+      startDate: startDate,
+      endDate: endDate,
+      tags: tags,
+      memo: memo,
+    };
+    await setTrip(data);
+    onClose();
+  };
 
   const handleClose = () => {
     onClose();
   };
 
-  const handleSubmit = async () => {
-    // dummy data
-    const data = {
-      // TO DO: create unique id
-      mapId: _.get(countryInfo, "id"),
-      countryName: countryName,
-      title: "",
-      startDate: startDate,
-      endDate: endDate,
-      tags: ["travel"],
-      memo: "",
-    };
-    await setTrip(data);
-    onClose();
-  };
   // TO DO: Create form
   // TO DO: Display image
   return (
@@ -56,7 +77,14 @@ const FormDialog = (props) => {
       </DialogTitle>
       <DialogContent>
         <Grid item xs container direction="column" spacing={2}>
-          <TextField autoFocus margin="dense" id="title" label="Title" />
+          <TextField
+            autoFocus
+            margin="dense"
+            id="title"
+            label="Title"
+            value={title}
+            onChange={handleChange}
+          />
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <KeyboardDatePicker
               disableToolbar
@@ -65,11 +93,11 @@ const FormDialog = (props) => {
               margin="dense"
               id="start"
               label="Start Date"
-              value={startDate}
-              onChange={handleStartChange}
               KeyboardButtonProps={{
                 "aria-label": "change date",
               }}
+              value={startDate}
+              onChange={handleStartChange}
             />
             <KeyboardDatePicker
               disableToolbar
@@ -78,19 +106,55 @@ const FormDialog = (props) => {
               margin="dense"
               id="start"
               label="End Date"
-              value={endDate}
-              onChange={handleEndChange}
               KeyboardButtonProps={{
                 "aria-label": "change date",
               }}
+              value={endDate}
+              onChange={handleEndChange}
             />
           </MuiPickersUtilsProvider>
-          <Checkbox
-            color="primary"
-            inputProps={{ "aria-label": "secondary checkbox" }}
-            label="travel"
+          <FormGroup row>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={tags.travel}
+                  onChange={handleTagsChange}
+                  name="travel"
+                  color="primary"
+                />
+              }
+              label="Travel"
+            ></FormControlLabel>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={tags.work}
+                  onChange={handleTagsChange}
+                  name="work"
+                  color="secondary"
+                />
+              }
+              label="Work"
+            ></FormControlLabel>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={tags.study}
+                  onChange={handleTagsChange}
+                  name="study"
+                  color="primary"
+                />
+              }
+              label="Study"
+            ></FormControlLabel>
+          </FormGroup>
+          <TextField
+            margin="dense"
+            id="memo"
+            label="Memo"
+            value={memo}
+            onChange={handleChange}
           />
-          <TextField margin="dense" id="memo" label="Memo" />
           <DialogContentText>
             Please press submit button to add a new trip.
           </DialogContentText>

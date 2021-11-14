@@ -38,7 +38,11 @@ const CardItem = ({ trip }) => {
   const title = _.get(trip, "title", "dummy TITLE");
   const date = _.get(trip, "start_date").toDate().getFullYear();
   const memo = _.get(trip, "memo");
-  const tags = _.get(trip, "tags", []);
+  const tags = _.get(trip, "tags", {
+    travel: false,
+    work: false,
+    study: false,
+  });
   const image = `https://source.unsplash.com/random/320×200?${countryName}&auto=format&fit=crop`;
 
   return (
@@ -79,16 +83,18 @@ const CardItem = ({ trip }) => {
               </div>
               <div>
                 {tags &&
-                  tags.map((word) => (
-                    <Chip
-                      icon={<School />}
-                      key={word}
-                      label={word}
-                      variant="outlined"
-                      color="primary"
-                      className={classes.chip}
-                    />
-                  ))}
+                  Object.keys(tags)
+                    .filter((tag) => tags[tag] === true)
+                    .map((word) => (
+                      <Chip
+                        icon={<School />}
+                        key={word}
+                        label={word}
+                        variant="outlined"
+                        color="primary"
+                        className={classes.chip}
+                      />
+                    ))}
               </div>
               <Typography variant="body2" color="textSecondary"></Typography>
             </Grid>
