@@ -20,9 +20,6 @@ const useStyles = makeStyles(() => ({
   root: {
     alignSelf: "center",
   },
-  container: {
-    position: "relative",
-  },
   grab: {
     cursor: "grab",
   },
@@ -31,10 +28,9 @@ const useStyles = makeStyles(() => ({
 const Map = ({ trips, width, height }) => {
   const classes = useStyles();
   // map size, zoom
-  height = height - 180;
   const initialTransform = {
     translateX: width / 2,
-    translateY: height / 2 + 110,
+    translateY: height / 2,
     scaleX: (width / 430) * 100,
     scaleY: (height / 430) * 100,
     scaleXMin: 100,
@@ -126,7 +122,7 @@ const Map = ({ trips, width, height }) => {
     <div className={classes.root}>
       <Zoom width={width} height={height} transformMatrix={initialTransform}>
         {(zoom) => (
-          <div className={classes.container}>
+          <div>
             <svg
               width={width}
               height={height}
