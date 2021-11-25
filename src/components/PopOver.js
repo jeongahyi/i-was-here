@@ -1,7 +1,14 @@
 import React from "react";
 import * as _ from "lodash";
 import { makeStyles } from "@material-ui/core/styles";
-import { Popover, Card, CardContent, Typography } from "@material-ui/core";
+import {
+  Popover,
+  Card,
+  CardContent,
+  Typography,
+  Chip,
+} from "@material-ui/core";
+import { School } from "@material-ui/icons";
 
 const useStyles = makeStyles({
   root: {
@@ -28,7 +35,7 @@ const PopOver = ({ trip, id, open, anchorEl, setAnchorEl }) => {
   const date = _.get(trip, "start_date").toDate().getFullYear();
   const memo = _.get(trip, "memo");
   const tags = _.get(trip, "tags", []);
-  console.log(date);
+  console.log(tags);
   // TO DO: display image
   // const maxSteps = _.get(data, 'images.length', 0);
   // // TO DO: case - no images make default images
@@ -57,7 +64,19 @@ const PopOver = ({ trip, id, open, anchorEl, setAnchorEl }) => {
             {memo ||
               "Lorem ipsum dolor sit amet, et ridens laboramus deterruisset quo, an ubique delenit voluptua per."}
           </Typography>
-          <Typography>{tags}</Typography>
+          {tags &&
+            Object.keys(tags)
+              .filter((tag) => tags[tag] === true)
+              .map((word) => (
+                <Chip
+                  icon={<School />}
+                  key={word}
+                  label={word}
+                  variant="outlined"
+                  color="primary"
+                  className={classes.chip}
+                />
+              ))}
         </CardContent>
       </Card>
     </Popover>
