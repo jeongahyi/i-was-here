@@ -21,6 +21,11 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     backgroundColor: "inherit",
   },
+  list: {
+    [theme.breakpoints.up("md")]: {
+      display: "none",
+    },
+  },
 }));
 
 const Container = () => {
@@ -83,10 +88,10 @@ const Container = () => {
         setFilterKeywords={setFilterKeywords}
         handelCountryCodes={handelCountryCodes}
       /> */}
-        {value && trips && value === "Map" ? (
-          <MapWrapper trips={trips} />
+        {value === "Map" ? (
+          <MapWrapper trips={trips} setTrips={setTrips} />
         ) : (
-          <TripList trips={trips} />
+          <TripList className={classes.list} trips={trips} />
         )}
       </main>
       <BottomNavigation

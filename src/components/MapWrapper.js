@@ -58,6 +58,9 @@ const useStyles = makeStyles((theme) => ({
     top: "auto",
     overflowY: "auto",
     padding: "10px",
+    [theme.breakpoints.down("sm")]: {
+      display: "none",
+    },
   },
   drawerHeader: {
     display: "flex",
@@ -82,7 +85,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const MapWrapper = ({ trips }) => {
+const MapWrapper = ({ trips, setTrips }) => {
   const classes = useStyles();
   const [width, height] = useSize();
   const [open, setOpen] = useState(false);
@@ -127,7 +130,7 @@ const MapWrapper = ({ trips }) => {
           [classes.contentShift]: open,
         })}
       >
-        <Map trips={trips} width={width} height={height} />
+        <Map trips={trips} setTrips={setTrips} width={width} height={height} />
       </div>
     </>
   );

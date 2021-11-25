@@ -18,10 +18,10 @@ import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
 } from "@material-ui/pickers";
-import { setTrip } from "../utils/firestore";
+import { setTrip, getList } from "../utils/firestore";
 
 const FormDialog = (props) => {
-  const { open, onClose, countryInfo } = props;
+  const { open, onClose, countryInfo, setTrips } = props;
   const countryName = _.get(countryInfo, "properties.name");
 
   const [title, setTitle] = useState("");
@@ -57,6 +57,8 @@ const FormDialog = (props) => {
       memo: memo,
     };
     await setTrip(data);
+    const tripList = await getList("trips");
+    setTrips(tripList);
     onClose();
   };
 

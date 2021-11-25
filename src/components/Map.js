@@ -25,7 +25,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const Map = ({ trips, width, height }) => {
+const Map = ({ trips, setTrips, width, height }) => {
   const classes = useStyles();
   // map size, zoom
   const initialTransform = {
@@ -196,6 +196,7 @@ const Map = ({ trips, width, height }) => {
         open={formOpen}
         onClose={handleClose}
         countryInfo={countryInfo}
+        setTrips={setTrips}
       />
     </div>
   );
